@@ -7,32 +7,33 @@
 	"item": [
 		{
 			"name": "Login",
-			"item": [],
+			"item": [
+				{
+					"name": "New Request",
+					"id": "1682b48f-5e40-4d42-8b4d-bec55fae590b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "11c56e4b-af3f-4535-98e2-110e654dfc6e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "78ea72f6-7ea6-413b-82ff-a2a403facfa3"
-		},
-		{
-			"name": "New Request",
-			"id": "1682b48f-5e40-4d42-8b4d-bec55fae590b",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"id": "11c56e4b-af3f-4535-98e2-110e654dfc6e",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	]
 }
