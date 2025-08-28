@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "b830bc06-e941-4453-9c38-b27ff125e602",
 		"name": "ServerRest",
+		"description": "READ\n\n**O ServeRest é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.**\n\n**Não deixe de seguir o** [<b>autor do projeto</b>](https://github.com/PauloGoncalvesBH) **e deixar um star no repositório:** [<b>github.com/ServeRest/ServeRest</b>](https://github.com/ServeRest/ServeRest)\n\nEssa página documenta todas as rotas e como acessá-las. Para mais detalhes do ServeRest (como executar localmente utilizando Docker ou NPM, alterar timeout de autenticação, etc) acesse [o repositório do ServeRest](https://github.com/serverest/serverest).\n\nEstá utilizando Postman? Importe o [JSON do Swagger](https://raw.githubusercontent.com/ServeRest/ServeRest/trunk/docs/swagger.json) para ter acesso às collections.\n\nVai fazer teste de carga? Leia a seção '[Teste de Carga](https://github.com/ServeRest/ServeRest#teste-de-carga)'.\n\nMuito obrigado ♥ a todos que apoiam o projeto [financeiramente](https://opencollective.com/serverest#section-contributors) ou [com código, ideias e divulgação](https://github.com/ServeRest/ServeRest#contribuidores-), graças a vocês **mais de R$ 2000,00 foram doados para a ONG** [<b>Todas as letras</b>](https://todasasletras.org/) até o momento.\n\nO ServeRest possui um front, com status em beta, não deixe de conhecer: [front.serverest.dev](https://front.serverest.dev/).\n\nPrecisa de apoio? [Abra uma issue](https://github.com/ServeRest/ServeRest/issues) ou contate o mantenedor do projeto:\n\n[Paulo Gonçalves&nbsp;- Website](https://www.linkedin.com/in/paulo-goncalves/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -33,7 +34,69 @@
 					"response": []
 				}
 			],
-			"id": "78ea72f6-7ea6-413b-82ff-a2a403facfa3"
+			"id": "78ea72f6-7ea6-413b-82ff-a2a403facfa3",
+			"auth": {
+				"type": "basic",
+				"basic": {
+					"username": "Authorization ",
+					"password": "Authorization "
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7090c7f4-e64b-4220-aad4-42ef57679f31",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe55481e-02b5-45b3-b624-80e2614c800c",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a6960f51-765c-4f56-a5b5-a89dd30164f1",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "22f1d0c7-4856-4259-8f33-d8206ce4c0af",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Name",
+			"value": "Authorization",
+			"type": "string"
 		}
 	]
 }
