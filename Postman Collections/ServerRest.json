@@ -385,7 +385,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Name",
+								"key": "name",
 								"value": "Authorization",
 								"type": "text"
 							}
