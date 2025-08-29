@@ -349,7 +349,7 @@
 					"response": []
 				},
 				{
-					"name": "[CT006]]Validar password invalido Copy",
+					"name": "[CT007]]Validar login com sucesso",
 					"event": [
 						{
 							"listen": "test",
@@ -383,43 +383,37 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Name",
+								"value": "Authorization",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"teste#qa.com\",\r\n    \"password\": \"abc123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"teste@qa.com\",\r\n    \"password\": \"abc@123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{URL_ServerRest}}/login?name=Authorization ",
-							"host": [
-								"{{URL_ServerRest}}"
-							],
-							"path": [
-								"login"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Authorization ",
-									"type": "text"
-								}
-							]
-						}
+						"url": "{{URL_ServerRest}}/login"
 					},
 					"response": []
 				}
 			],
 			"id": "78ea72f6-7ea6-413b-82ff-a2a403facfa3",
 			"description": "Autentique o seu usuário para montar um carrinho e, se for administrador, gerenciar os produtosEndFragment\n\nStartFragment\n\nInforme o valor de `Authorization` retornado na rota _/login_\n\nName: `Authorization`\n\nIn: `header`\n\nEndFragment",
+			"auth": {
+				"type": "noauth"
+			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d5773b47-49ee-4379-8e98-60fc935c92c9",
+						"id": "7aa91071-0b9b-4272-9994-9251d509a542",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -430,7 +424,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e1084175-6ad6-4970-b3b0-b62ff820883f",
+						"id": "92f4d0b3-50cc-4744-b4db-e65ad4dff46a",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -441,18 +435,11 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "apikey",
-		"apikey": {
-			"value": "Authorization",
-			"key": "Authorization"
-		}
-	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "320b113e-4d78-4a99-b991-95bb8d0d68b9",
+				"id": "3aeb6b79-73ab-4bc9-b97b-3a63b5fa4118",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -463,7 +450,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2502df2c-3307-47fa-afaa-ca17998a1ddf",
+				"id": "d888af58-2045-4890-86a0-6cb568695080",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
