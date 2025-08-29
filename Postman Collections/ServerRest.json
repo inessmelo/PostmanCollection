@@ -45,6 +45,7 @@
 				}
 			],
 			"id": "78ea72f6-7ea6-413b-82ff-a2a403facfa3",
+			"description": "Autentique o seu usuário para montar um carrinho e, se for administrador, gerenciar os produtosEndFragment\n\nStartFragment\n\nInforme o valor de `Authorization` retornado na rota _/login_\n\nName: `Authorization`\n\nIn: `header`\n\nEndFragment",
 			"auth": {
 				"type": "basic",
 				"basic": {
