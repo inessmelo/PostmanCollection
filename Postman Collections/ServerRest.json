@@ -464,7 +464,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"teste@qa01.com\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"4alroLhKVkNX177y\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -473,6 +473,78 @@
 								}
 							],
 							"id": "94642a8d-6449-4ea0-8064-42fa8c004e3a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?_id=4alroLhKVkNX177y",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "4alroLhKVkNX177y",
+											"type": "text"
+										},
+										{
+											"key": "nome",
+											"value": "Teste QA001",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT002]Buscar usuário por email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"teste@qa01.com\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "56584621-71ba-46b1-8430-634502d5128b",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -497,6 +569,7 @@
 										{
 											"key": "nome",
 											"value": "Teste QA001",
+											"type": "text",
 											"disabled": true
 										},
 										{
@@ -521,7 +594,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT002]Buscar usuário por ID",
+							"name": "[CT003]Buscar usuário por nome",
 							"event": [
 								{
 									"listen": "test",
@@ -536,7 +609,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"teste@qa02.com.br\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Teste QA001\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -544,7 +617,7 @@
 									}
 								}
 							],
-							"id": "56584621-71ba-46b1-8430-634502d5128b",
+							"id": "6151c295-2785-4d8b-b761-82466ad5e20a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -552,7 +625,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa02.com.br",
+									"raw": "{{URL_ServerRest}}/usuarios?nome=Teste QA001",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -562,31 +635,174 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "",
+											"value": "4alroLhKVkNX177y",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "nome",
-											"value": null,
-											"type": "text",
-											"disabled": true
+											"value": "Teste QA001",
+											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "teste@qa02.com.br"
+											"value": "teste@qa01.com",
+											"disabled": true
 										},
 										{
 											"key": "password",
-											"value": null,
+											"value": "testeqa1234",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "administrador",
-											"value": null,
+											"value": "true",
 											"type": "text",
 											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT004]Buscar usuário por senha",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"testeqa1234\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "1966421f-e5d3-4f0f-b6b9-5d2c181082f6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?password=testeqa1234",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "4alroLhKVkNX177y",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste QA001",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"type": "text"
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT005]Buscar usuário por adminitrador",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "e69fb293-f683-4f3c-b2be-b3980be7993a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?administrador=true",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "4alroLhKVkNX177y",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste QA001",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text"
 										}
 									]
 								}
