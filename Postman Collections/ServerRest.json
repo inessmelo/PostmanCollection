@@ -574,7 +574,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -583,6 +583,50 @@
 								}
 							],
 							"id": "c5fb0d39-da60-44ac-b378-eb2b0d2b8cea",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT003]Validar obrigatoriedade do campo email Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "90f8c718-2f5c-4cce-a7e0-326876cf975c",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
