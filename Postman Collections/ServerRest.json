@@ -485,7 +485,7 @@
 					"name": "Buscar",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "[CT001]",
 							"id": "94642a8d-6449-4ea0-8064-42fa8c004e3a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
