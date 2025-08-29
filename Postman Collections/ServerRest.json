@@ -10,29 +10,62 @@
 			"name": "Login",
 			"item": [
 				{
-					"name": "[CT001]Validar acesso invalido",
+					"name": "[CT001]Validar dados invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "21e3bcc3-0c26-4635-a37f-40dbe3f2c79f",
+								"exec": [
+									"//RETORNO DO CODIGO E O STATUS\r",
+									"pm.test(\"Status code retorna 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"    pm.response.to.have.status(\"Unauthorized\");\r",
+									"});\r",
+									"\r",
+									"//TEMPO DE RESPOSTA\r",
+									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"//RETORNO DO RESPONSE\r",
+									"pm.test(\"Exibe a msg de alerta\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Email e/ou senha inválidos\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "1682b48f-5e40-4d42-8b4d-bec55fae590b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Name",
+								"value": "Authorization",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"teste@qa.com\",\r\n  \"password\": \"abc123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"teste@qa.com\",\r\n    \"password\": \"abc123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://serverest.dev/login"
+						"url": "{{URL_ServerRest}}/login"
 					},
 					"response": []
 				},
 				{
-					"name": "[CT002]]Validar email valido",
+					"name": "[CT002]]Validar campos em branco",
 					"id": "11c56e4b-af3f-4535-98e2-110e654dfc6e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -83,7 +116,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c1205adb-548f-4610-be18-43dc8212cde9",
+				"id": "320b113e-4d78-4a99-b991-95bb8d0d68b9",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -94,20 +127,13 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6e8db0b7-83e1-4a20-b91e-5473a1f8e4c4",
+				"id": "2502df2c-3307-47fa-afaa-ca17998a1ddf",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "Name",
-			"value": "Authorization",
-			"type": "string"
 		}
 	]
 }
