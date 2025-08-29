@@ -944,7 +944,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT007]Buscar usuário com email invalido",
+							"name": "[CT008]Buscar usuário com email invalido",
 							"event": [
 								{
 									"listen": "test",
@@ -1014,7 +1014,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT007]Buscar usuário com email invalido Copy",
+							"name": "[CT009]Buscar usuário com password invalido",
 							"event": [
 								{
 									"listen": "test",
@@ -1045,7 +1045,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=AAAaaaaa@qa01.com",
+									"raw": "{{URL_ServerRest}}/usuarios?password=AAAaaaaa",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -1065,7 +1065,78 @@
 										},
 										{
 											"key": "email",
-											"value": "AAAaaaaa@qa01.com"
+											"value": "AAAaaaaa@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "AAAaaaaa"
+										},
+										{
+											"key": "administrador",
+											"value": "AAAaaaaa",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT010]Buscar usuário com administrador invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f71bc18a-aa9a-4a27-9375-d17795153c67",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false'\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "dbd94b56-317c-4150-be38-c08f88bc6fa2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?administrador=AAAaaaaa",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "AAAaaaaa@qa01.com",
+											"disabled": true
 										},
 										{
 											"key": "password",
@@ -1074,9 +1145,7 @@
 										},
 										{
 											"key": "administrador",
-											"value": "AAAaaaaa",
-											"type": "text",
-											"disabled": true
+											"value": "AAAaaaaa"
 										}
 									]
 								}
@@ -1659,7 +1728,7 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{URL_ServerRest}}/usuarios?_id=1TSin9q1xmanUoBP",
@@ -1672,8 +1741,7 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "1TSin9q1xmanUoBP",
-											"type": "text"
+											"value": "1TSin9q1xmanUoBP"
 										},
 										{
 											"key": "nome",
