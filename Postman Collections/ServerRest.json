@@ -66,13 +66,51 @@
 				},
 				{
 					"name": "[CT002]]Validar campos em branco",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
+								"exec": [
+									"//RETORNO DO CODIGO E O STATUS\r",
+									"pm.test(\"Retorna o Status Code 400 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"//TEMPO DE RESPOSTA\r",
+									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"//RETORNO DO RESPONSE\r",
+									"pm.test(\"Exibe a msg de alerta\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"password não pode ficar em branco\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "11c56e4b-af3f-4535-98e2-110e654dfc6e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL_ServerRest}}/login"
 					},
 					"response": []
 				}
