@@ -808,6 +808,280 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "[CT006]Buscar usuário com ID invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f71bc18a-aa9a-4a27-9375-d17795153c67",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"0\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "0e776e20-ffac-483d-b936-13501b52f9a0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?_id=AAAaaaaa",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "AAAaaaaa"
+										},
+										{
+											"key": "nome",
+											"value": "Teste QA001",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Buscar usuário com nome invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f71bc18a-aa9a-4a27-9375-d17795153c67",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"0\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "2780f0dc-2d2e-4194-9c71-0af41fe71760",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?nome=AAAaaaaa",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "AAAaaaaa"
+										},
+										{
+											"key": "email",
+											"value": "AAAaaaaa@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "AAAaaaaa",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Buscar usuário com email invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f71bc18a-aa9a-4a27-9375-d17795153c67",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"0\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "4ce8c193-cc03-4896-ba40-0d4d54db1dc6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=AAAaaaaa@qa01.com",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "AAAaaaaa@qa01.com"
+										},
+										{
+											"key": "password",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "AAAaaaaa",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Buscar usuário com email invalido Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f71bc18a-aa9a-4a27-9375-d17795153c67",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"0\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "621a7408-7ba9-4d9e-8307-5c4290fdc48e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=AAAaaaaa@qa01.com",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "AAAaaaaa@qa01.com"
+										},
+										{
+											"key": "password",
+											"value": "AAAaaaaa",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "AAAaaaaa",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "dd2ccb6d-1cf2-45f4-a80c-939773ea9c94"
@@ -1423,18 +1697,6 @@
 										}
 									]
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "[CT001]Excluir usuário por ID",
-							"id": "0e776e20-ffac-483d-b936-13501b52f9a0",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": []
 							},
 							"response": []
 						}
