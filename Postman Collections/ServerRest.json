@@ -449,7 +449,7 @@
 					"name": "Buscar",
 					"item": [
 						{
-							"name": "[CT001]Buscar usuário por email",
+							"name": "[CT001]Buscar usuário por ID",
 							"event": [
 								{
 									"listen": "test",
@@ -464,7 +464,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"teste@qa02.com.br\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"teste@qa01.com\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -480,7 +480,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa02.com.br",
+									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa01.com",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -490,29 +490,28 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "",
+											"value": "4alroLhKVkNX177y",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "nome",
-											"value": null,
-											"type": "text",
+											"value": "Teste QA001",
 											"disabled": true
 										},
 										{
 											"key": "email",
-											"value": "teste@qa02.com.br"
+											"value": "teste@qa01.com"
 										},
 										{
 											"key": "password",
-											"value": null,
+											"value": "testeqa1234",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "administrador",
-											"value": null,
+											"value": "true",
 											"type": "text",
 											"disabled": true
 										}
