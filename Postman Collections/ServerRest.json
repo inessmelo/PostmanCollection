@@ -378,9 +378,9 @@
 								"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
 								"exec": [
 									"//RETORNO DO CODIGO E O STATUS\r",
-									"pm.test(\"Retorna o Status Code 400 Bad Request\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"pm.test(\"Retorna o Status Code 200 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
 									"\r",
 									"//TEMPO DE RESPOSTA\r",
@@ -390,7 +390,7 @@
 									"\r",
 									"//RETORNO DO RESPONSE\r",
 									"pm.test(\"Exibe a msg de alerta\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\")\r",
+									"    pm.expect(pm.response.text()).to.include(\"Login realizado com sucesso\")\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -411,8 +411,7 @@
 							{
 								"key": "name",
 								"value": "Authorization",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"body": {
@@ -424,7 +423,27 @@
 								}
 							}
 						},
-						"url": "{{URL_ServerRest}}/login"
+						"url": {
+							"raw": "{{URL_ServerRest}}/login?Name=Authorization &In=header",
+							"host": [
+								"{{URL_ServerRest}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "Authorization ",
+									"type": "text"
+								},
+								{
+									"key": "In",
+									"value": "header",
+									"type": "text"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -458,6 +477,40 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Buscar",
+					"item": [
+						{
+							"name": "New Request",
+							"id": "94642a8d-6449-4ea0-8064-42fa8c004e3a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"id": "dd2ccb6d-1cf2-45f4-a80c-939773ea9c94"
+				},
+				{
+					"name": "Cadastrar",
+					"item": [],
+					"id": "2544e1af-abb0-48d2-98dd-e0fd1757aa2d"
+				},
+				{
+					"name": "Buscar por ID",
+					"item": [],
+					"id": "4c817c46-abe1-4312-85b7-4f9db9796733"
+				}
+			],
+			"id": "a96d30f0-3826-4938-832a-a51539f23833"
 		}
 	],
 	"event": [
