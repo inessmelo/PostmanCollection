@@ -492,7 +492,8 @@
 							},
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
 						}
@@ -501,7 +502,20 @@
 				},
 				{
 					"name": "Cadastrar",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "28c1f3f3-741d-4662-b660-eea62b598c30",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "2544e1af-abb0-48d2-98dd-e0fd1757aa2d"
 				},
 				{
