@@ -505,9 +505,14 @@
 					"id": "2544e1af-abb0-48d2-98dd-e0fd1757aa2d"
 				},
 				{
-					"name": "Buscar por ID",
+					"name": "Editar",
 					"item": [],
 					"id": "4c817c46-abe1-4312-85b7-4f9db9796733"
+				},
+				{
+					"name": "Excluir",
+					"item": [],
+					"id": "38c92192-adb4-49a7-9777-02eb251ea614"
 				}
 			],
 			"id": "a96d30f0-3826-4938-832a-a51539f23833"
