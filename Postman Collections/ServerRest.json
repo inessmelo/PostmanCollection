@@ -43,6 +43,9 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -99,6 +102,9 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -154,6 +160,9 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -209,12 +218,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization ",
+								"key": "Authorization",
 								"value": "Authorization ",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -264,12 +277,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization ",
+								"key": "Authorization",
 								"value": "Authorization ",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -319,6 +336,9 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -331,7 +351,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL_ServerRest}}/login?name=Authorization ",
+							"raw": "{{URL_ServerRest}}/login",
 							"host": [
 								"{{URL_ServerRest}}"
 							],
@@ -341,7 +361,8 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Authorization "
+									"value": "Authorization ",
+									"disabled": true
 								}
 							]
 						}
@@ -382,12 +403,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "name",
 								"value": "Authorization",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -413,7 +438,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7aa91071-0b9b-4272-9994-9251d509a542",
+						"id": "34f6cc86-381f-4553-b5ee-2765e5bb4dad",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -424,7 +449,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "92f4d0b3-50cc-4744-b4db-e65ad4dff46a",
+						"id": "e1a8dbd2-268c-4503-b0b1-1cda34e153d8",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
