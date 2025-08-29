@@ -449,7 +449,29 @@
 					"name": "Buscar",
 					"item": [
 						{
-							"name": "[CT001]",
+							"name": "[CT001]Buscar usuário por email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"teste@qa02.com.br\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "94642a8d-6449-4ea0-8064-42fa8c004e3a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -457,7 +479,118 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "{{URL_ServerRest}}/usuarios"
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa02.com.br",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa02.com.br"
+										},
+										{
+											"key": "password",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT002]Buscar usuário por ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"teste@qa02.com.br\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "56584621-71ba-46b1-8430-634502d5128b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa02.com.br",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa02.com.br"
+										},
+										{
+											"key": "password",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": null,
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
 							},
 							"response": []
 						}
