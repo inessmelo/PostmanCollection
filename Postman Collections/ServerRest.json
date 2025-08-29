@@ -691,6 +691,50 @@
 							"response": []
 						},
 						{
+							"name": "[CT006]Validar email invalido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "ebab3748-f412-4a0f-b5e8-53ba4e5916ff",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{nome}}\",\r\n    \"email\": \"teste###qa.com\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
 							"name": "New Request Copy",
 							"event": [
 								{
@@ -761,7 +805,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5c793bae-3a40-4644-bc23-49e014618a91",
+				"id": "86e34405-28e0-4806-ada5-91fba31ac45f",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -814,8 +858,8 @@
 					"function randomBoolean() {\r",
 					"    return Math.random() < 0.5;\r",
 					"}\r",
-					"let gender = randomBoolean() ? \"male\" : \"female\";\r",
-					"pm.environment.set(\"gender\", gender);\r",
+					"let sexo = randomBoolean() ? \"male\" : \"female\";\r",
+					"pm.environment.set(\"gender\", sexo);\r",
 					"\r",
 					"\r",
 					"//=================SENHA=================\r",
@@ -839,7 +883,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "12e8459b-b5f0-4bcf-9b22-15f50924d743",
+				"id": "01d61040-7f3d-42da-b6ca-9bf79d311562",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
