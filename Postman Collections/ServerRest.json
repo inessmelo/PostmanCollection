@@ -265,7 +265,13 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization ",
+								"value": "Authorization ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"email\": \"teste#qa.com\",\r\n    \"password\": \"abc123\"\r\n}",
@@ -281,6 +287,69 @@
 				},
 				{
 					"name": "[CT006]]Validar password invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
+								"exec": [
+									"//RETORNO DO CODIGO E O STATUS\r",
+									"pm.test(\"Retorna o Status Code 401 Unauthorized\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"    pm.response.to.have.status(\"Unauthorized\");\r",
+									"});\r",
+									"\r",
+									"//TEMPO DE RESPOSTA\r",
+									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"//RETORNO DO RESPONSE\r",
+									"pm.test(\"Exibe a msg de alerta\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Email e/ou senha inválidos\")\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "85c1ddf6-394d-4817-93e9-6861aae4b368",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"teste@qa.com\",\r\n    \"password\": \"a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_ServerRest}}/login?name=Authorization ",
+							"host": [
+								"{{URL_ServerRest}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Authorization "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[CT006]]Validar password invalido Copy",
 					"event": [
 						{
 							"listen": "test",
@@ -308,7 +377,7 @@
 							}
 						}
 					],
-					"id": "85c1ddf6-394d-4817-93e9-6861aae4b368",
+					"id": "63753d94-9c19-4adc-9a11-3b20ca5b5cbd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
