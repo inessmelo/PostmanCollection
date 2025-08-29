@@ -10,7 +10,7 @@
 			"name": "Login",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "[CT001]Validar acesso invalido",
 					"id": "1682b48f-5e40-4d42-8b4d-bec55fae590b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -32,7 +32,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "[CT002]]Validar email valido",
 					"id": "11c56e4b-af3f-4535-98e2-110e654dfc6e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
