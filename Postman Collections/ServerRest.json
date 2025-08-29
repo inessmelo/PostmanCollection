@@ -49,9 +49,10 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization ",
+								"key": "Authorization",
 								"value": "Authorization ",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -510,8 +511,18 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
 						}
@@ -536,10 +547,77 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "3aeb6b79-73ab-4bc9-b97b-3a63b5fa4118",
+				"id": "284989ac-b698-4b35-a309-e484f142dd3a",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
+					"//=================NAME=================\r",
+					"// Lista de nomes aleatórios\r",
+					"const names = [\"Lucas\", \"Ana\", \"Carlos\", \"Mariana\", \"João\", \"Isabela\", \"Pedro\", \"Lívia\", \"Felipe\", \"Rafaela\"];\r",
+					"\r",
+					"// Função para escolher um nome aleatório da lista\r",
+					"function getRandomName() {\r",
+					"    const index = Math.floor(Math.random() * names.length);\r",
+					"    return names[index];\r",
+					"}\r",
+					"\r",
+					"// Define a variável 'name' no ambiente\r",
+					"pm.environment.set(\"name\", getRandomName());\r",
+					"\r",
+					"\r",
+					"\r",
+					"//=================EMAIL=================\r",
+					"const domains = [\"example.com\", \"mail.com\", \"test.com\", \"fakeemail.com\"];\r",
+					"\r",
+					"// Função para gerar email aleatório com nome + número + domínio\r",
+					"function getRandomEmail(name) {\r",
+					"    const randomNum = Math.floor(Math.random() * 1000); // número de 0 a 999\r",
+					"    const domain = domains[Math.floor(Math.random() * domains.length)];\r",
+					"    return `${name.toLowerCase()}${randomNum}@${domain}`;\r",
+					"}\r",
+					"\r",
+					"// Gerar e armazenar as variáveis\r",
+					"const name = getRandomName();\r",
+					"const email = getRandomEmail(name);\r",
+					"\r",
+					"pm.environment.set(\"name\", name);\r",
+					"pm.environment.set(\"email\", email);\r",
+					"\r",
+					"\r",
+					"\r",
+					"//=================STATUS=================\r",
+					"//RETONAR ACTIVE OU INACTIVE NO CAMPO STATUS\r",
+					"function randomBoolean() {\r",
+					"    return Math.random() < 0.5;\r",
+					"}\r",
+					"let status = randomBoolean() ? \"active\" : \"inactive\";\r",
+					"pm.environment.set(\"status\", status);\r",
+					"\r",
+					"\r",
+					"\r",
+					"//=================GENDER=================\r",
+					"//RETONAR MALE OU FEMALE NO CAMPO GENDER\r",
+					"function randomBoolean() {\r",
+					"    return Math.random() < 0.5;\r",
+					"}\r",
+					"let gender = randomBoolean() ? \"male\" : \"female\";\r",
+					"pm.environment.set(\"gender\", gender);\r",
+					"\r",
+					"\r",
+					"//=================SENHA=================\r",
+					"//RETONAR SENHA COM 6 CARACTERES\r",
+					"// Gera senha aleatória de 6 caracteres\r",
+					"function generatePassword(length) {\r",
+					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
+					"    let password = '';\r",
+					"    for (let i = 0; i < length; i++) {\r",
+					"        password += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+					"    }\r",
+					"    return password;\r",
+					"}\r",
+					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
+					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
+					"console.log(\"Senha gerada:\", senha);            //MOSTRA NO CONSEOLE\r",
 					""
 				]
 			}
@@ -547,7 +625,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d888af58-2045-4890-86a0-6cb568695080",
+				"id": "686465d4-97ce-46fa-b2cd-e09380f770ca",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
