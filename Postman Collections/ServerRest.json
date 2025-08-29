@@ -23,11 +23,6 @@
 									"    pm.response.to.have.status(\"Unauthorized\");\r",
 									"});\r",
 									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-									"});\r",
-									"\r",
 									"//RETORNO DO RESPONSE\r",
 									"pm.test(\"Exibe a msg de alerta\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"Email e/ou senha inválidos\");\r",
@@ -80,11 +75,6 @@
 									"pm.test(\"Retorna o Status Code 400 Bad Request\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"    pm.response.to.have.status(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 									"});\r",
 									"\r",
 									"//RETORNO DO RESPONSE\r",
@@ -141,11 +131,6 @@
 									"    pm.response.to.have.status(\"Bad Request\");\r",
 									"});\r",
 									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-									"});\r",
-									"\r",
 									"//RETORNO DO RESPONSE\r",
 									"pm.test(\"Exibe a msg de alerta\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
@@ -197,11 +182,6 @@
 									"pm.test(\"Retorna o Status Code 400 Bad Request\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"    pm.response.to.have.status(\"Bad Request\");\r",
-									"});\r",
-									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 									"});\r",
 									"\r",
 									"//RETORNO DO RESPONSE\r",
@@ -258,11 +238,6 @@
 									"    pm.response.to.have.status(\"Bad Request\");\r",
 									"});\r",
 									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-									"});\r",
-									"\r",
 									"//RETORNO DO RESPONSE\r",
 									"pm.test(\"Exibe a msg de alerta\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\")\r",
@@ -315,11 +290,6 @@
 									"pm.test(\"Retorna o Status Code 401 Unauthorized\", function () {\r",
 									"    pm.response.to.have.status(401);\r",
 									"    pm.response.to.have.status(\"Unauthorized\");\r",
-									"});\r",
-									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 									"});\r",
 									"\r",
 									"//RETORNO DO RESPONSE\r",
@@ -384,11 +354,6 @@
 									"    pm.response.to.have.status(\"OK\");\r",
 									"});\r",
 									"\r",
-									"//TEMPO DE RESPOSTA\r",
-									"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-									"});\r",
-									"\r",
 									"//RETORNO DO RESPONSE\r",
 									"pm.test(\"Exibe a msg de alerta\", function () {\r",
 									"    pm.expect(pm.response.text()).to.include(\"Login realizado com sucesso\")\r",
@@ -435,13 +400,11 @@
 							"query": [
 								{
 									"key": "Name",
-									"value": "Authorization ",
-									"type": "text"
+									"value": "Authorization "
 								},
 								{
 									"key": "In",
-									"value": "header",
-									"type": "text"
+									"value": "header"
 								}
 							]
 						}
@@ -518,11 +481,6 @@
 											"    pm.response.to.have.status(\"Bad Request\");\r",
 											"});\r",
 											"\r",
-											"//TEMPO DE RESPOSTA\r",
-											"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-											"});\r",
-											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
@@ -570,17 +528,9 @@
 											"    pm.response.to.have.status(\"Bad Request\");\r",
 											"});\r",
 											"\r",
-											"//TEMPO DE RESPOSTA\r",
-											"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-											"});\r",
-											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"password não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false'\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -597,7 +547,51 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\",\r\n    \"administrador\": \"\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT003]Validar obrigatoriedade do campo email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "c5fb0d39-da60-44ac-b378-eb2b0d2b8cea",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -679,7 +673,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "284989ac-b698-4b35-a309-e484f142dd3a",
+				"id": "5c793bae-3a40-4644-bc23-49e014618a91",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -757,11 +751,14 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "686465d4-97ce-46fa-b2cd-e09380f770ca",
+				"id": "12e8459b-b5f0-4bcf-9b22-15f50924d743",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
-					""
+					"//TEMPO DE RESPOSTA\r",
+					"pm.test(\"Tempo de resposta deve ser <2seg\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+					"});"
 				]
 			}
 		}
