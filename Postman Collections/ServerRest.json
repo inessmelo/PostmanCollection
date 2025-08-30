@@ -2770,8 +2770,30 @@
 		},
 		{
 			"name": "Produtos",
-			"item": [],
-			"id": "82605781-27a2-4341-a8de-a561aa68681a"
+			"item": [
+				{
+					"name": "Cadastrar",
+					"item": [],
+					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e"
+				},
+				{
+					"name": "Buscar",
+					"item": [],
+					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b"
+				},
+				{
+					"name": "Excluir",
+					"item": [],
+					"id": "ee76a526-4c41-49f3-a81f-f3567cb7a4f1"
+				},
+				{
+					"name": "Editar",
+					"item": [],
+					"id": "4721c670-a624-4a7a-994c-80dabd803a19"
+				}
+			],
+			"id": "82605781-27a2-4341-a8de-a561aa68681a",
+			"description": "**Swagger**: [https://serverest.dev/#/Produtos](https://serverest.dev/#/Produtos)\n\n**Requisição**: GET / POST / DELETE / PUT\n\n**Descrição**: Consulte produtos cadastrados ou, como administrador, gerencie os produtos da loja."
 		}
 	],
 	"event": [
