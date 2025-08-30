@@ -1753,10 +1753,31 @@
 											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
 											"});\r",
 											"\r",
-											"let reposnse = pm.response.json();      // Converte o response em JSON\r",
-											"let id = response.usuarios._id;         // Acessa o ID dentro do objeto \"data\r",
-											"pm.environment.set(\"registro_id\", id);  // Salvando o ID em uma variável de ambiente\r",
-											"console.log(\"ID salvo para o DELETE:\", id);"
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											"\r",
+											"let response = pm.response.json();                              // Converte o response em JSON\r",
+											"let id = response.id;                                           // Verifica se existe id direto na raiz\r",
+											"\r",
+											"if (!id && response.data && response.data.id) {                 // Se não tiver, tenta buscar dentro de \"data\"\r",
+											"    id = response.data.id;\r",
+											"}\r",
+											"\r",
+											"if (id) {                                                       // Salva em variável de ambiente se encontrou\r",
+											"    pm.environment.set(\"registro_id\", id);\r",
+											"    console.log(\"ID salvo para o DELETE:\", id);\r",
+											"} else {\r",
+											"    console.warn(\"Nenhum ID encontrado no response.\");\r",
+											"}"
 										],
 										"type": "text/javascript",
 										"packages": {}
