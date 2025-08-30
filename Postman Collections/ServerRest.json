@@ -2022,8 +2022,18 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{$randomFullName}}\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
 							},
 							"response": []
 						}
