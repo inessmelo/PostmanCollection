@@ -1173,9 +1173,6 @@
 									"script": {
 										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
 										"exec": [
-											"let response = pm.response.json();          // Converte o response em JSON\r",
-											"let id = response.usuarios._id;             // Acessa o ID dentro do objeto \"data\"\r",
-											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
@@ -1184,7 +1181,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"4alroLhKVkNX177y\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"{{delete_id}}\");\r",
 											"});\r",
 											""
 										],
@@ -1213,13 +1210,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios/{{novo_id}}",
+									"raw": "{{URL_ServerRest}}/usuarios/{{delete_id}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
 									"path": [
 										"usuarios",
-										"{{novo_id}}"
+										"{{delete_id}}"
 									],
 									"query": [
 										{
@@ -2293,6 +2290,8 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    //PEGANDO OS DADOS PARA VALIDAR NA REQUISIÇÃO DELETE\r",
 											"    let response = pm.response.json();\r",
 											"    let id = response._id;\r",
 											"    pm.globals.set(\"delete_id\", id);\r",
