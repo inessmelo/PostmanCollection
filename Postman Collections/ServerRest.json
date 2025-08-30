@@ -416,7 +416,7 @@
 					"response": []
 				},
 				{
-					"name": "[CT007]]Validar login Admin com sucesso Copy",
+					"name": "[CT008]]Validar login nok Admin com sucesso",
 					"event": [
 						{
 							"listen": "test",
@@ -457,7 +457,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"teste@qa01.com\",\r\n    \"password\": \"testeqa1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"naoadmin@teste.com\",\r\n    \"password\": \"naoadmin@123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -465,7 +465,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL_ServerRest}}/login?Name=Authorization &In=header",
+							"raw": "{{URL_ServerRest}}/login?Name=Authorization ",
 							"host": [
 								"{{URL_ServerRest}}"
 							],
@@ -479,7 +479,8 @@
 								},
 								{
 									"key": "In",
-									"value": "header"
+									"value": "header",
+									"disabled": true
 								}
 							]
 						}
