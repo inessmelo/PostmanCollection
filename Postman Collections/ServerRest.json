@@ -2903,14 +2903,14 @@
 										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 401\", function () {\r",
-											"    pm.response.to.have.status(401);\r",
-											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"pm.test(\"Status code retorna 403\", function () {\r",
+											"    pm.response.to.have.status(403);\r",
+											"    pm.response.to.have.status(\"Forbidden\");\r",
 											"});\r",
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Rota exclusiva para administradores\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -2923,11 +2923,67 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hb2FkbWluQHRlc3RlLmNvbSIsInBhc3N3b3JkIjoibmFvYWRtaW5AMTIzIiwiaWF0IjoxNzU2NTk1NjI5LCJleHAiOjE3NTY1OTYyMjl9.nwcM_4ijBFtOrhEJHmM-v2HPxLilFYQxLTjNP7aYWgM"
+									}
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{$randomPrice}},\r\n    \"descricao\": \"{{$randomProduct}}\",\r\n    \"quantidade\": \"{{qde}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT003]Validar cadastro com campos em branco",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 403\", function () {\r",
+											"    pm.response.to.have.status(403);\r",
+											"    pm.response.to.have.status(\"Forbidden\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Rota exclusiva para administradores\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "38743887-2bef-4a56-9d57-5e018b35a314",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
