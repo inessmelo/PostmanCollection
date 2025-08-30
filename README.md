@@ -45,9 +45,8 @@ Próximos Passos
 
 ## ▶️ Como Executar
 
-- Como rodar testes no Postman
-- Como importar coleções
-- Como executar scripts de automação
+- Geração de token no GitHub para permitir a automação dos envios dos testes, eliminando a necessidade de executar manualmente comandos Git.
+- Criação de relatórios detalhados (Status Report) utilizando o Newman via linha de comando, garantindo maior visibilidade e rastreabilidade dos resultados dos testes.
 
 ## 📊 Resultados e Demonstrações
 
@@ -60,6 +59,7 @@ Próximos Passos
 - Captura e reaproveitamento da massa de dados gerada em requisições anteriores para utilização em chamadas subsequentes.   
 - Expansão e detalhamento de cenários de teste dentro de cada requisição, cobrindo suas respectivas rotas.   
 - Geração de relatórios de execução (Status Report) por meio da integração do Newman com o Postman.
+- Automatizar a subida dos testes do Postman em tempo real para o GitHub sem efetuar comando GIT.   
 
 
 ## 📌 Próximos Passos
