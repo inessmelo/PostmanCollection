@@ -3098,7 +3098,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT006]Validar cadastro com campo Descrição em branco Copy",
+							"name": "[CT006]Validar cadastro com campo Descrição em branco",
 							"event": [
 								{
 									"listen": "test",
@@ -3113,10 +3113,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"descricao não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"quantidade deve ser um número\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -3139,7 +3136,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": {{qde_gerada}}\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{qde_gerada}},\r\n    \"descricao\": \"\",\r\n    \"quantidade\": {{qde_gerada}}\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3151,7 +3148,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT005]Validar cadastro com campo Preço em branco Copy 2",
+							"name": "[CT007]Validar cadastro com campo Qde em branco",
 							"event": [
 								{
 									"listen": "test",
@@ -3166,9 +3163,6 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"descricao não pode ficar em branco\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"quantidade deve ser um número\");\r",
 											"});"
 										],
@@ -3192,7 +3186,57 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": {{qde_gerada}}\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{qde_gerada}},\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT008]Validar cadastro de um produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "7d82db8b-4fb9-434d-9313-bf1a506d25f5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{qde_gerada}},\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": {{qde_gerada}}\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
