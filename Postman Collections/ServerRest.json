@@ -1213,12 +1213,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=excluir@teste.com.br",
+									"raw": "{{URL_ServerRest}}/usuarios/{{novo_id}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
 									"path": [
-										"usuarios"
+										"usuarios",
+										"{{novo_id}}"
 									],
 									"query": [
 										{
@@ -1230,10 +1231,6 @@
 											"key": "nome",
 											"value": "Teste exclusão",
 											"disabled": true
-										},
-										{
-											"key": "email",
-											"value": "excluir@teste.com.br"
 										},
 										{
 											"key": "password",
@@ -2298,7 +2295,7 @@
 											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
 											"    let response = pm.response.json();\r",
 											"    let id = response._id;\r",
-											"    pm.globals.set(\"novo_id\", id);\r",
+											"    pm.globals.set(\"delete_id\", id);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -2673,7 +2670,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{registro_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{novo_id}}"
 							},
 							"response": []
 						},
