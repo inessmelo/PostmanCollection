@@ -2927,7 +2927,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{products}}\",\r\n    \"preco\": ,\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{$randomPrice}},\r\n    \"descricao\": \"{{$randomProduct}}\",\r\n    \"quantidade\": \"{{qde}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2965,7 +2965,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5315cf9b-855c-4f24-8d97-46026903f410",
+				"id": "2a3bdd00-f036-4131-aae0-fe968a19056a",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -3054,23 +3054,23 @@
 					"\r",
 					"//=================PREÇO=================\r",
 					"// Gera preços aleatória de 3 caracteres\r",
-					"function generatePrice(length) {\r",
+					"function generateQde(length) {\r",
 					"    const chars = '0123456789';\r",
-					"    let price = '';\r",
+					"    let quantidade = '';\r",
 					"    for (let i = 0; i < length; i++) {\r",
-					"        price += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+					"        quantidade += chars.charAt(Math.floor(Math.random() * chars.length));\r",
 					"    }\r",
-					"    return price;\r",
+					"    return quantidade;\r",
 					"}\r",
-					"let preco = generatePrice(3);                //GERA A VARIAVEL NO POSTMAN\r",
-					"pm.environment.set(\"preco_gerada\", preco);      //ARMAZENA EM VARIÁVEL DO POSTMAN"
+					"let qde = generateQde(3);                //GERA A VARIAVEL NO POSTMAN\r",
+					"pm.environment.set(\"qde_gerada\", qde);     //ARMAZENA EM VARIÁVEL DO POSTMAN"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "91b41fbb-22ed-4571-a4d4-6d6543cf2822",
+				"id": "b940936d-bb83-4377-a157-dc4895a60aa4",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
