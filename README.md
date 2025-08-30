@@ -1,4 +1,4 @@
-# 📌 Nome do Projeto
+# 📌 Postman Collection
 
  - <a href="https://serverest.dev/#/">ServeRest</a>: é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.
  - <a href="">----</a>: é uma API REST gratuita que simula ... estudos de testes de API.
