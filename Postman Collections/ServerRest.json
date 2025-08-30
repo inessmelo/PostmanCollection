@@ -1869,7 +1869,20 @@
 				},
 				{
 					"name": "Editar",
-					"item": [],
+					"item": [
+						{
+							"name": "[CT001]Editar nome",
+							"id": "57da889a-b0ff-475b-9dfc-5c83e44df08a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "4c817c46-abe1-4312-85b7-4f9db9796733"
 				},
 				{
