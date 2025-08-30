@@ -1188,7 +1188,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?nome=Teste QA002",
+									"raw": "{{URL_ServerRest}}/usuarios?_id=MgEI4h08vIsLtlkv",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -1198,12 +1198,12 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "4alroLhKVkNX177y",
-											"disabled": true
+											"value": "MgEI4h08vIsLtlkv"
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA002"
+											"value": "Teste QA002",
+											"disabled": true
 										},
 										{
 											"key": "email",
@@ -1773,9 +1773,14 @@
 				},
 				{
 					"name": "Editar",
+					"item": [],
+					"id": "4c817c46-abe1-4312-85b7-4f9db9796733"
+				},
+				{
+					"name": "Excluir",
 					"item": [
 						{
-							"name": "[CT001]Excluir usuário por ID",
+							"name": "[CT001]Excluir usuário nao existente por ID",
 							"event": [
 								{
 									"listen": "test",
@@ -1783,14 +1788,14 @@
 										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"    pm.response.to.have.status(\"OK\");\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?_id=MgEI4h08vIsLtlkv. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -1805,8 +1810,17 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?_id=1TSin9q1xmanUoBP",
+									"raw": "{{URL_ServerRest}}/usuarios?_id=MgEI4h08vIsLtlkv",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -1816,11 +1830,89 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "1TSin9q1xmanUoBP"
+											"value": "MgEI4h08vIsLtlkv"
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA001",
+											"value": "Teste QA002",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT001]Excluir usuário nao existente por ID Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?_id=MgEI4h08vIsLtlkv. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "68425752-1979-4ab0-9267-d4a960ff39a6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?_id=MgEI4h08vIsLtlkv",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "MgEI4h08vIsLtlkv"
+										},
+										{
+											"key": "nome",
+											"value": "Teste QA002",
 											"disabled": true
 										},
 										{
@@ -1844,11 +1936,6 @@
 							"response": []
 						}
 					],
-					"id": "4c817c46-abe1-4312-85b7-4f9db9796733"
-				},
-				{
-					"name": "Excluir",
-					"item": [],
 					"id": "38c92192-adb4-49a7-9777-02eb251ea614"
 				}
 			],
