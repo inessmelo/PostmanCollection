@@ -2148,7 +2148,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT004]Editar status Adim com sucesso",
+							"name": "[CT004]Editar status Adim pra false",
 							"event": [
 								{
 									"listen": "test",
@@ -2188,6 +2188,138 @@
 									}
 								},
 								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT005]Editar status Adim pra true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "bff8c98e-2662-47d3-9662-f6bf6c12a646",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@123\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT006]Editar todos os campos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "6d02ac50-9a8a-4d79-bba7-250c498aaf8a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Editar usuário não encontrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "14d0b831-227e-4df4-b6ce-4caecdc99051",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/naoendocntrado@111"
 							},
 							"response": []
 						}
