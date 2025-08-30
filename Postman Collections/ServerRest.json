@@ -1197,7 +1197,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?_id=MgEI4h08vIsLtlkv",
+									"raw": "{{URL_ServerRest}}/usuarios?email=excluir@teste.com.br",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -1207,21 +1207,21 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "MgEI4h08vIsLtlkv"
+											"value": "MgEI4h08vIsLtlkv",
+											"disabled": true
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA002",
+											"value": "Teste exclusão",
 											"disabled": true
 										},
 										{
 											"key": "email",
-											"value": "teste@qa01.com",
-											"disabled": true
+											"value": "excluir@teste.com.br"
 										},
 										{
 											"key": "password",
-											"value": "testeqa1234",
+											"value": "excluir@1234",
 											"type": "text",
 											"disabled": true
 										},
@@ -1840,26 +1840,6 @@
 										{
 											"key": "_id",
 											"value": "MgEI4h08vIsLtlkv"
-										},
-										{
-											"key": "nome",
-											"value": "Teste QA002",
-											"disabled": true
-										},
-										{
-											"key": "email",
-											"value": "teste@qa01.com",
-											"disabled": true
-										},
-										{
-											"key": "password",
-											"value": "testeqa1234",
-											"disabled": true
-										},
-										{
-											"key": "administrador",
-											"value": "true",
-											"disabled": true
 										}
 									]
 								}
@@ -1915,26 +1895,6 @@
 										"usuarios"
 									],
 									"query": [
-										{
-											"key": "_id",
-											"value": "KJwoMHXvWWOTvfoi",
-											"disabled": true
-										},
-										{
-											"key": "email",
-											"value": "teste@qa01.com",
-											"disabled": true
-										},
-										{
-											"key": "password",
-											"value": "testeqa1234",
-											"disabled": true
-										},
-										{
-											"key": "administrador",
-											"value": "true",
-											"disabled": true
-										},
 										{
 											"key": "nome",
 											"value": "Teste exclusão"
@@ -1994,28 +1954,8 @@
 									],
 									"query": [
 										{
-											"key": "_id",
-											"value": "KJwoMHXvWWOTvfoi",
-											"disabled": true
-										},
-										{
-											"key": "email",
-											"value": "teste@qa01.com",
-											"disabled": true
-										},
-										{
-											"key": "password",
-											"value": "testeqa1234",
-											"disabled": true
-										},
-										{
 											"key": "administrador",
 											"value": "true"
-										},
-										{
-											"key": "nome",
-											"value": "Teste exclusão",
-											"disabled": true
 										}
 									]
 								}
@@ -2063,7 +2003,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?password=testeqa1234",
+									"raw": "{{URL_ServerRest}}/usuarios?password=excluir@1234",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -2072,28 +2012,8 @@
 									],
 									"query": [
 										{
-											"key": "_id",
-											"value": "KJwoMHXvWWOTvfoi",
-											"disabled": true
-										},
-										{
-											"key": "email",
-											"value": "teste@qa01.com",
-											"disabled": true
-										},
-										{
 											"key": "password",
-											"value": "testeqa1234"
-										},
-										{
-											"key": "administrador",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "nome",
-											"value": "Teste exclusão",
-											"disabled": true
+											"value": "excluir@1234"
 										}
 									]
 								}
@@ -2172,6 +2092,64 @@
 											"key": "nome",
 											"value": "Teste exclusão",
 											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT006]Excluir usuário existente por ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?_id=MgEI4h08vIsLtlkv. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "bdbc8f22-c1c4-47a4-91bc-69dc6caffd32",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?_id=KJwoMHXvWWOTvfoi",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "KJwoMHXvWWOTvfoi"
 										}
 									]
 								}
