@@ -2209,7 +2209,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
 							},
 							"response": []
 						},
@@ -2253,7 +2253,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
 							},
 							"response": []
 						},
@@ -2274,11 +2274,6 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"\r",
-											"    //PEGANDO OS DADOS PARA VALIDAR NA REQUISIÇÃO DELETE\r",
-											"    let response = pm.response.json();\r",
-											"    let id = response._id;\r",
-											"    pm.globals.set(\"delete_id\", id);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -2653,7 +2648,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{novo_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{delete_id}}"
 							},
 							"response": []
 						},
@@ -2772,6 +2767,11 @@
 				}
 			],
 			"id": "a96d30f0-3826-4938-832a-a51539f23833"
+		},
+		{
+			"name": "Produtos",
+			"item": [],
+			"id": "82605781-27a2-4341-a8de-a561aa68681a"
 		}
 	],
 	"event": [
