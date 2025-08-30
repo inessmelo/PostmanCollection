@@ -3246,13 +3246,81 @@
 								"url": "{{URL_ServerRest}}/produtos"
 							},
 							"response": []
+						},
+						{
+							"name": "[CT009]Validar produto existente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "c088cec4-81dd-4589-83b4-4f569c1369b0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Small Granite Keyboard\",\r\n    \"preco\": 419,\r\n    \"descricao\": \"{Fresh\",\r\n    \"quantidade\": 419\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
 						}
 					],
 					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e"
 				},
 				{
 					"name": "Buscar",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
+							},
+							"response": []
+						}
+					],
 					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b"
 				},
 				{
