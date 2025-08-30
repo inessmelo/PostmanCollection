@@ -1943,6 +1943,84 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "[CT003]Excluir usuário por Função Admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?administrador=true. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "a5456c86-fac0-4263-bebc-8c09981bb92a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?administrador=true",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "KJwoMHXvWWOTvfoi",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true"
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "38c92192-adb4-49a7-9777-02eb251ea614"
