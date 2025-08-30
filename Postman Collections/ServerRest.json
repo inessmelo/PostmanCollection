@@ -1118,6 +1118,15 @@
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{URL_ServerRest}}/usuarios?administrador=AAAaaaaa",
 									"host": [
@@ -1757,7 +1766,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste QA002\",\r\n    \"email\": \"teste@qa02.com.br\",\r\n    \"password\": \"testeqa1234\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1858,7 +1867,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT001]Excluir usuário nao existente por ID Copy",
+							"name": "[CT002]Excluir usuário Nome",
 							"event": [
 								{
 									"listen": "test",
@@ -1898,7 +1907,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?_id=MgEI4h08vIsLtlkv",
+									"raw": "{{URL_ServerRest}}/usuarios?nome=Teste exclusão",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -1908,11 +1917,7 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "MgEI4h08vIsLtlkv"
-										},
-										{
-											"key": "nome",
-											"value": "Teste QA002",
+											"value": "KJwoMHXvWWOTvfoi",
 											"disabled": true
 										},
 										{
@@ -1929,6 +1934,10 @@
 											"key": "administrador",
 											"value": "true",
 											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão"
 										}
 									]
 								}
