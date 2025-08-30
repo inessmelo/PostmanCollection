@@ -2965,7 +2965,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "79e2bb88-59bf-4f97-9277-72ce3578bde3",
+				"id": "5315cf9b-855c-4f24-8d97-46026903f410",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -3050,29 +3050,27 @@
 					"}\r",
 					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
 					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
-					"console.log(\"Senha gerada:\", senha);            //MOSTRA NO CONSEOLE\r",
 					"\r",
 					"\r",
 					"//=================PREÇO=================\r",
 					"// Gera preços aleatória de 3 caracteres\r",
 					"function generatePrice(length) {\r",
-					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
-					"    let password = '';\r",
+					"    const chars = '0123456789';\r",
+					"    let price = '';\r",
 					"    for (let i = 0; i < length; i++) {\r",
-					"        password += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+					"        price += chars.charAt(Math.floor(Math.random() * chars.length));\r",
 					"    }\r",
-					"    return password;\r",
+					"    return price;\r",
 					"}\r",
-					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
-					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
-					"console.log(\"Senha gerada:\", senha);            //MOSTRA NO CONSEOLE"
+					"let preco = generatePrice(3);                //GERA A VARIAVEL NO POSTMAN\r",
+					"pm.environment.set(\"preco_gerada\", preco);      //ARMAZENA EM VARIÁVEL DO POSTMAN"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "77cfb620-0e38-463f-9c09-8169da5071dd",
+				"id": "91b41fbb-22ed-4571-a4d4-6d6543cf2822",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
