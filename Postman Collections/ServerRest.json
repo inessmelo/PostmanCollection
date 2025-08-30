@@ -2773,7 +2773,20 @@
 			"item": [
 				{
 					"name": "Cadastrar",
-					"item": [],
+					"item": [
+						{
+							"name": "[CT001]",
+							"id": "08e8fec2-a830-463c-9a28-a51195b24923",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e"
 				},
 				{
