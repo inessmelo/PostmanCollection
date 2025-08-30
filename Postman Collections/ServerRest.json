@@ -3256,14 +3256,14 @@
 										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 201\", function () {\r",
-											"    pm.response.to.have.status(201);\r",
-											"    pm.response.to.have.status(\"Created\");\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
 											"});\r",
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Já existe produto com esse nome\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -3304,7 +3304,7 @@
 					"name": "Buscar",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "[CT001]Buscar produto por ID",
 							"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
