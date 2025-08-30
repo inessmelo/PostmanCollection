@@ -2016,7 +2016,29 @@
 					"name": "Editar",
 					"item": [
 						{
-							"name": "[CT001]Editar nome",
+							"name": "[CT001]Editar nome com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "57da889a-b0ff-475b-9dfc-5c83e44df08a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -2027,6 +2049,138 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"nome\": \"{{$randomFullName}}\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT002]Editar email com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "48cea338-7a26-4e08-bb8f-14c0d6043831",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"editar@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT003]Editar senha com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "879ede84-67f6-4088-829d-5159f33a9920",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/{{id_edit}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT004]Editar status Adim com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "100be7ef-663a-4d7a-9f9e-caacd9f1db76",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@123\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
