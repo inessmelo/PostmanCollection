@@ -1803,6 +1803,64 @@
 								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
+						},
+						{
+							"name": "[CT013]Validar cadastro de usuário",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"let response = pm.response.json();                              // Converte o response em JSON\r",
+											"let id = response.id;                                           // Verifica se existe id direto na raiz\r",
+											"\r",
+											"if (!id && response.data && response.data.id) {                 // Se não tiver, tenta buscar dentro de \"data\"\r",
+											"    id = response.data.id;\r",
+											"}\r",
+											"\r",
+											"if (id) {                                                       // Salva em variável de ambiente se encontrou\r",
+											"    pm.environment.set(\"registro_id\", id);\r",
+											"    console.log(\"ID salvo para o DELETE:\", id);\r",
+											"} else {\r",
+											"    console.warn(\"Nenhum ID encontrado no response.\");\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "31c094d8-2501-4011-9d11-9965af08ca9c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
 						}
 					],
 					"id": "2544e1af-abb0-48d2-98dd-e0fd1757aa2d"
@@ -2156,7 +2214,117 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{registro_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/BCuUdfCIL3DYN0Wv"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Excluir usuário nao encontrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "dc8f5cf8-b513-4ac2-bafd-dea10adff1d3",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d3d27f4c-1825-4c1b-aa4a-51b2d2224cda",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/BCuUdfCIL3DYN0Wv"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Excluir usuário nao encontrado Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "dc8f5cf8-b513-4ac2-bafd-dea10adff1d3",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "b6be1bde-7905-4084-8ee9-03dbc88a63c1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios/BCuUdfCIL3DYN0Wv"
 							},
 							"response": []
 						}
