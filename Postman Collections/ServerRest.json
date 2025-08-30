@@ -1251,6 +1251,93 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "[CT012]Buscar usuário para edição",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"let response = pm.response.json();          // Converte o response em JSON\r",
+											"let id = response.usuarios._id;             // Acessa o ID dentro do objeto \"data\"\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"4alroLhKVkNX177y\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ee24fa95-723d-4da6-b389-93228128c5a4",
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "b7a9e30e-ec03-4ad4-a00f-44270cec8b16",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=excluir@teste.com.br",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "MgEI4h08vIsLtlkv",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "excluir@teste.com.br"
+										},
+										{
+											"key": "password",
+											"value": "excluir@1234",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"id": "dd2ccb6d-1cf2-45f4-a80c-939773ea9c94"
@@ -1807,7 +1894,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT013]Validar cadastro de usuário",
+							"name": "[CT013]Validar cadastro de usuário para exclusão",
 							"event": [
 								{
 									"listen": "test",
@@ -1854,6 +1941,64 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT014]Validar cadastro de usuário para edição",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"let response = pm.response.json();                              // Converte o response em JSON\r",
+											"let id = response._id;                                           // Verifica se existe id direto na raiz\r",
+											"\r",
+											"if (!id && response._id && response.usuarios._id) {                 // Se não tiver, tenta buscar dentro de \"data\"\r",
+											"    id = response.usuarios._id;\r",
+											"}\r",
+											"\r",
+											"if (id) {                                                       // Salva em variável de ambiente se encontrou\r",
+											"    pm.environment.set(\"registro_id\", id);\r",
+											"    console.log(\"ID salvo para o DELETE:\", id);\r",
+											"} else {\r",
+											"    console.warn(\"Nenhum ID encontrado no response.\");\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d00bc1f8-2748-4eba-a67b-de4346fa6119",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Teste edição\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@1234\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
