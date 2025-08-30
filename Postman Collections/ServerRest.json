@@ -1766,7 +1766,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1882,7 +1882,7 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?_id=MgEI4h08vIsLtlkv. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?nome=Teste%20exclus%C3%A3o. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -2011,6 +2011,162 @@
 										{
 											"key": "administrador",
 											"value": "true"
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT004]Excluir usuário por senha",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?password=testeqa1234. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d12dfc06-873e-4935-aefa-f71e43e84e3b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?password=testeqa1234",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "KJwoMHXvWWOTvfoi",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "teste@qa01.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234"
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT005]Excluir usuário por email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?email=excluir@teste.com.br. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d50ae8a7-c711-42ba-9dfc-e7817947a0dd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios?email=excluir@teste.com.br",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "KJwoMHXvWWOTvfoi",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "excluir@teste.com.br"
+										},
+										{
+											"key": "password",
+											"value": "testeqa1234",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"disabled": true
 										},
 										{
 											"key": "nome",
