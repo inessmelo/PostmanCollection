@@ -1182,7 +1182,9 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"{{delete_id}}\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"true\");\r",
 											"});\r",
+											"\r",
 											""
 										],
 										"type": "text/javascript",
