@@ -1173,6 +1173,9 @@
 									"script": {
 										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
 										"exec": [
+											"let response = pm.response.json();          // Converte o response em JSON\r",
+											"let id = response.usuarios._id;             // Acessa o ID dentro do objeto \"data\"\r",
+											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
@@ -1183,6 +1186,18 @@
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"4alroLhKVkNX177y\");\r",
 											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ee24fa95-723d-4da6-b389-93228128c5a4",
+										"exec": [
+											"\r",
 											""
 										],
 										"type": "text/javascript",
@@ -1815,8 +1830,8 @@
 											"let response = pm.response.json();                              // Converte o response em JSON\r",
 											"let id = response._id;                                           // Verifica se existe id direto na raiz\r",
 											"\r",
-											"if (!id && response.data && response.data.id) {                 // Se não tiver, tenta buscar dentro de \"data\"\r",
-											"    id = response.data.id;\r",
+											"if (!id && response._id && response.usuarios._id) {                 // Se não tiver, tenta buscar dentro de \"data\"\r",
+											"    id = response.usuarios._id;\r",
 											"}\r",
 											"\r",
 											"if (id) {                                                       // Salva em variável de ambiente se encontrou\r",
