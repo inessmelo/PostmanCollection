@@ -2927,7 +2927,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{products}}\",\r\n    \"preco\": ,\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2965,7 +2965,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "86e34405-28e0-4806-ada5-91fba31ac45f",
+				"id": "79e2bb88-59bf-4f97-9277-72ce3578bde3",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -2981,6 +2981,21 @@
 					"\r",
 					"// Define a variável 'name' no ambiente\r",
 					"pm.environment.set(\"name\", getRandomName());\r",
+					"\r",
+					"\r",
+					"\r",
+					"//=================NOME PRODUTO=================\r",
+					"// Lista de nomes aleatórios\r",
+					"const produtcs = [\"Maça\", \"Desinfetante\", \"Esponja de aço\", \"Cafe\", \"Feijao\", \"Arroz\", \"Macarrao\", \"Vassoura\", \"Dedtergente\", \"Sabonete\"];\r",
+					"\r",
+					"// Função para escolher um nome aleatório da lista\r",
+					"function getRandomProducts() {\r",
+					"    const index = Math.floor(Math.random() * products.length);\r",
+					"    return products[index];\r",
+					"}\r",
+					"\r",
+					"// Define a variável 'name' no ambiente\r",
+					"pm.environment.set(\"products\", getRandomName());\r",
 					"\r",
 					"\r",
 					"\r",
@@ -3036,14 +3051,28 @@
 					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
 					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
 					"console.log(\"Senha gerada:\", senha);            //MOSTRA NO CONSEOLE\r",
-					""
+					"\r",
+					"\r",
+					"//=================PREÇO=================\r",
+					"// Gera preços aleatória de 3 caracteres\r",
+					"function generatePrice(length) {\r",
+					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
+					"    let password = '';\r",
+					"    for (let i = 0; i < length; i++) {\r",
+					"        password += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+					"    }\r",
+					"    return password;\r",
+					"}\r",
+					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
+					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
+					"console.log(\"Senha gerada:\", senha);            //MOSTRA NO CONSEOLE"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "01d61040-7f3d-42da-b6ca-9bf79d311562",
+				"id": "77cfb620-0e38-463f-9c09-8169da5071dd",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
