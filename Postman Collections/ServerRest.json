@@ -2214,7 +2214,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/BCuUdfCIL3DYN0Wv"
+								"url": "{{URL_ServerRest}}/usuarios/{{id}"
 							},
 							"response": []
 						},
