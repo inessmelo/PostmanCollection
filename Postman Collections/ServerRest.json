@@ -2775,14 +2775,90 @@
 					"name": "Cadastrar",
 					"item": [
 						{
-							"name": "[CT001]",
+							"name": "[CT001]Validar token de acesso ausente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "08e8fec2-a830-463c-9a28-a51195b24923",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT002]Validar cadastro com usuário não Admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "ba008a19-c5f0-4c50-9be7-e94cfe131fd3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"\",\r\n    \"preco\": \"\",\r\n    \"descricao\": \"\",\r\n    \"quantidade\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
 							},
 							"response": []
 						}
