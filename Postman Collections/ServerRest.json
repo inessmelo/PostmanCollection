@@ -1182,7 +1182,8 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"4alroLhKVkNX177y\");\r",
-											"});"
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1750,7 +1751,12 @@
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"let reposnse = pm.response.json();      // Converte o response em JSON\r",
+											"let id = response.usuarios._id;         // Acessa o ID dentro do objeto \"data\r",
+											"pm.environment.set(\"registro_id\", id);  // Salvando o ID em uma variável de ambiente\r",
+											"console.log(\"ID salvo para o DELETE:\", id);"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2070,28 +2076,8 @@
 									],
 									"query": [
 										{
-											"key": "_id",
-											"value": "KJwoMHXvWWOTvfoi",
-											"disabled": true
-										},
-										{
 											"key": "email",
 											"value": "excluir@teste.com.br"
-										},
-										{
-											"key": "password",
-											"value": "testeqa1234",
-											"disabled": true
-										},
-										{
-											"key": "administrador",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "nome",
-											"value": "Teste exclusão",
-											"disabled": true
 										}
 									]
 								}
@@ -2120,6 +2106,17 @@
 										"type": "text/javascript",
 										"packages": {}
 									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "dc8f5cf8-b513-4ac2-bafd-dea10adff1d3",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
 							],
 							"id": "bdbc8f22-c1c4-47a4-91bc-69dc6caffd32",
@@ -2138,7 +2135,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/KJwoMHXvWWOTvfoi"
+								"url": "{{URL_ServerRest}}/usuarios/{{registro_id}}"
 							},
 							"response": []
 						}
