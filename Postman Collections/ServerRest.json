@@ -352,6 +352,10 @@
 							"script": {
 								"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
 								"exec": [
+									"let response = pm.response.json();\r",
+									"let token_Admin = response.authorization;\r",
+									"pm.globals.set(\"token_adm\", token_adm);\r",
+									"\r",
 									"//RETORNO DO CODIGO E O STATUS\r",
 									"pm.test(\"Retorna o Status Code 200 Bad Request\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -3205,6 +3209,10 @@
 									"script": {
 										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
 										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"edit_id_product\", id_product);\r",
+											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
@@ -3298,7 +3306,37 @@
 							"response": []
 						}
 					],
-					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e"
+					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e",
+					"auth": {
+						"type": "bearer",
+						"bearer": {
+							"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NjYwMSwiZXhwIjoxNzU2NTk3MjAxfQ.VQQzoFGnyH8R_U4yeDgcjYGLeGqgLeyBHSu6xjHLvkg"
+						}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3a227497-972a-4c26-9035-0856d4b6d571",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "aaccae00-2b01-43f5-9d99-7f472655c401",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
 					"name": "Buscar",
