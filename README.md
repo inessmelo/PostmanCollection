@@ -71,4 +71,4 @@ Próximos Passos
 
 ## 👩‍💻 Autor(a)
 
-Ines Melo   /   <a href="https://www.linkedin.com/in/in%C3%AAs-m-065b8681/">LinkedIn</a>   /   <a href="https://github.com/inessmelo">GitHub</a>
+Ines Melo   /   <a href="https://www.linkedin.com/in/in%C3%AAs-m-065b8681/">LinkedIn</a>   /   <a href="https://gitlab.com/inessmelo/postmancollection/-/tree/main">GitLab</a>
