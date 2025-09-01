@@ -398,7 +398,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL_ServerRest}}/login?Name=Authorization &In=header",
+							"raw": "{{URL_ServerRest}}/login?Name=Authorization ",
 							"host": [
 								"{{URL_ServerRest}}"
 							],
@@ -412,7 +412,8 @@
 								},
 								{
 									"key": "In",
-									"value": "header"
+									"value": "header",
+									"disabled": true
 								}
 							]
 						}
@@ -1362,6 +1363,87 @@
 								}
 							],
 							"id": "b7a9e30e-ec03-4ad4-a00f-44270cec8b16",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ServerRest}}/usuarios/{{edit_id}}",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"usuarios",
+										"{{edit_id}}"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "MgEI4h08vIsLtlkv",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Teste exclusão",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "excluir@1234",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[CT013]Buscar usuário Admin de teste",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"{{edit_id}}\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ee24fa95-723d-4da6-b389-93228128c5a4",
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "e075bf8b-455d-406c-aa9e-e7c8d369bd7a",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
