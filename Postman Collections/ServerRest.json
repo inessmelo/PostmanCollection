@@ -1452,7 +1452,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@123\",\r\n    \"administrador\": \"true\"\r\n}"
+									"raw": ""
 								},
 								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
 							},
@@ -3301,7 +3301,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": {{qde_gerada}},\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": {{qde_gerada}}\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": \"{{qde_gerada}}\",\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": \"{{qde_gerada}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3351,7 +3351,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Small Granite Keyboard\",\r\n    \"preco\": 419,\r\n    \"descricao\": \"{Fresh\",\r\n    \"quantidade\": 419\r\n}",
+									"raw": "{\r\n    \"nome\": \"Small Granite Keyboard\",\r\n    \"preco\": 419,\r\n    \"descricao\": \"Fresh\",\r\n    \"quantidade\": 419\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3364,17 +3364,11 @@
 						}
 					],
 					"id": "60fabb72-717c-40af-9cec-fc5b2168f32e",
-					"auth": {
-						"type": "bearer",
-						"bearer": {
-							"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NjYwMSwiZXhwIjoxNzU2NTk3MjAxfQ.VQQzoFGnyH8R_U4yeDgcjYGLeGqgLeyBHSu6xjHLvkg"
-						}
-					},
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3a227497-972a-4c26-9035-0856d4b6d571",
+								"id": "18fe55ab-7690-40a4-9a4c-e637fe586212",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3385,7 +3379,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "aaccae00-2b01-43f5-9d99-7f472655c401",
+								"id": "3ee4ff75-6116-4801-87cc-3947c549dd5a",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3430,7 +3424,37 @@
 				}
 			],
 			"id": "82605781-27a2-4341-a8de-a561aa68681a",
-			"description": "**Swagger**: [https://serverest.dev/#/Produtos](https://serverest.dev/#/Produtos)\n\n**Requisição**: GET / POST / DELETE / PUT\n\n**Descrição**: Consulte produtos cadastrados ou, como administrador, gerencie os produtos da loja."
+			"description": "**Swagger**: [https://serverest.dev/#/Produtos](https://serverest.dev/#/Produtos)\n\n**Requisição**: GET / POST / DELETE / PUT\n\n**Descrição**: Consulte produtos cadastrados ou, como administrador, gerencie os produtos da loja.",
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1Njc3MDg0MSwiZXhwIjoxNzU2NzcxNDQxfQ.N8pE8G-IHbuOVUzHKDb-uoor6Oc5M5chMrmvUH43AYU"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "04b2af3f-eb93-439b-9e5b-a469ae607c02",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1349933d-4e77-4ea2-8a52-e5fdea3c6aa1",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [
