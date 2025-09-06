@@ -3478,17 +3478,11 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NzE5NzgzNCwiZXhwIjoxNzU3MTk4NDM0fQ.dJlhHbXJRyFctIlCSbi3N5GLSnE9n9tYQJI3trXcHMc"
-									}
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"{{idProd_gerada}}\",\r\n            \"quantidade\": 20\r\n        },\r\n        {\r\n            \"idProduto\": \"{{idProd_gerada}}\",\r\n            \"quantidade\": 30\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"BeeJh5lz3k6kSIzA\",\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3501,17 +3495,11 @@
 						}
 					],
 					"id": "77528057-eedb-47fc-8308-db671077067c",
-					"auth": {
-						"type": "bearer",
-						"bearer": {
-							"token": ""
-						}
-					},
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "19cc2fc3-22e1-4dc7-a24a-aa318b48fd5b",
+								"id": "20c6ca32-bab0-4bf7-ac4b-6664154c081e",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3522,7 +3510,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a52b10e7-01df-467c-b69f-1b8a36cb4d52",
+								"id": "2edaccaa-63ab-42da-85d8-389a9dfd367c",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3545,13 +3533,16 @@
 			],
 			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd",
 			"auth": {
-				"type": "noauth"
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NzE5ODcxMiwiZXhwIjoxNzU3MTk5MzEyfQ.M0UKt4CADDBS-Lpf4VWDyDCF8boMwbco5gowmlnjpqE"
+				}
 			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "227c72e3-3350-4156-9ca3-b61b13d5be66",
+						"id": "85410f21-2fae-4546-b2ba-91804e70fa28",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -3562,7 +3553,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "718ec96d-fe38-4fa6-ba75-ca3063835261",
+						"id": "e0cf0697-ae91-400b-90e5-c3e5a2ed591d",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -3577,7 +3568,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "291ce5de-e4e7-4b6d-bb76-99feb37d240f",
+				"id": "3f72f675-6748-487a-a5fa-de82e0f0b636",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -3665,7 +3656,7 @@
 					"\r",
 					"//RETONAR ID COM 10 CARACTERES\r",
 					"function generateIdProducts(length) {\r",
-					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
+					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
 					"    let id = '';\r",
 					"    for (let i = 0; i < length; i++) {\r",
 					"        id += chars.charAt(Math.floor(Math.random() * chars.length));\r",
@@ -3694,7 +3685,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6eb1bbae-6357-4417-b642-551ea80174e1",
+				"id": "3921a251-f8c0-4879-ba94-292a189e552d",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
