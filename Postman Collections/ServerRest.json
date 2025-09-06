@@ -3481,7 +3481,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NzE5NzgzNCwiZXhwIjoxNzU3MTk4NDM0fQ.dJlhHbXJRyFctIlCSbi3N5GLSnE9n9tYQJI3trXcHMc"
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NzE5NzgzNCwiZXhwIjoxNzU3MTk4NDM0fQ.dJlhHbXJRyFctIlCSbi3N5GLSnE9n9tYQJI3trXcHMc"
 									}
 								},
 								"method": "POST",
