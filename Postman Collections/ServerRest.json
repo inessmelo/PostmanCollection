@@ -3478,6 +3478,12 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NzE5NzgzNCwiZXhwIjoxNzU3MTk4NDM0fQ.dJlhHbXJRyFctIlCSbi3N5GLSnE9n9tYQJI3trXcHMc"
+									}
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -3493,14 +3499,14 @@
 					"auth": {
 						"type": "bearer",
 						"bearer": {
-							"token": "{{token_adm}}"
+							"token": ""
 						}
 					},
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "72e5e222-c931-4f2f-a95e-d2667f90db45",
+								"id": "19cc2fc3-22e1-4dc7-a24a-aa318b48fd5b",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3511,7 +3517,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b797a17d-8551-46af-8e3b-7b7f521b7bdf",
+								"id": "a52b10e7-01df-467c-b69f-1b8a36cb4d52",
 								"type": "text/javascript",
 								"packages": {},
 								"exec": [
@@ -3534,16 +3540,13 @@
 			],
 			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd",
 			"auth": {
-				"type": "bearer",
-				"bearer": {
-					"token": "{{token_adm}}"
-				}
+				"type": "noauth"
 			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d81e2497-60ab-4c3a-b025-e4f97e885ba6",
+						"id": "10f42659-ed4b-4433-949a-849fe11d9d81",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -3554,7 +3557,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2e6015e7-ce99-4d2a-92e6-cd3b1d6c6548",
+						"id": "efb6ceed-ea79-4cd4-9418-cfabe79fab5c",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
