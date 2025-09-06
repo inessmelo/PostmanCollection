@@ -3488,7 +3488,12 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"BeeJh5lz3k6kSIzA\",\r\n      \"quantidade\": 1\r\n    },\r\n    {\r\n      \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n      \"quantidade\": 3\r\n    }\r\n  ]\r\n}"
+									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"{{idProd_gerada}}\",\r\n            \"quantidade\": 20\r\n        },\r\n        {\r\n            \"idProduto\": \"{{idProd_gerada}}\",\r\n            \"quantidade\": 30\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": "{{URL_ServerRest}}/carrinhos"
 							},
@@ -3546,7 +3551,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "10f42659-ed4b-4433-949a-849fe11d9d81",
+						"id": "227c72e3-3350-4156-9ca3-b61b13d5be66",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -3557,11 +3562,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "efb6ceed-ea79-4cd4-9418-cfabe79fab5c",
+						"id": "718ec96d-fe38-4fa6-ba75-ca3063835261",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
-							"pm.globals.get(\"{{token_adm}}\", token)"
+							""
 						]
 					}
 				}
@@ -3572,7 +3577,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "2a3bdd00-f036-4131-aae0-fe968a19056a",
+				"id": "291ce5de-e4e7-4b6d-bb76-99feb37d240f",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -3646,7 +3651,6 @@
 					"\r",
 					"//=================SENHA=================\r",
 					"//RETONAR SENHA COM 6 CARACTERES\r",
-					"// Gera senha aleatória de 6 caracteres\r",
 					"function generatePassword(length) {\r",
 					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
 					"    let password = '';\r",
@@ -3657,6 +3661,19 @@
 					"}\r",
 					"let senha = generatePassword(6);                //GERA A VARIAVEL NO POSTMAN\r",
 					"pm.environment.set(\"senha_gerada\", senha);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
+					"\r",
+					"\r",
+					"//RETONAR ID COM 10 CARACTERES\r",
+					"function generateIdProducts(length) {\r",
+					"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';\r",
+					"    let id = '';\r",
+					"    for (let i = 0; i < length; i++) {\r",
+					"        id += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+					"    }\r",
+					"    return id;\r",
+					"}\r",
+					"let idProd = generatePassword(10);                 //GERA A VARIAVEL NO POSTMAN\r",
+					"pm.environment.set(\"idProd_gerada\", idProd);      //ARMAZENA EM VARIÁVEL DO POSTMAN\r",
 					"\r",
 					"\r",
 					"//=================PREÇO=================\r",
@@ -3677,7 +3694,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b940936d-bb83-4377-a157-dc4895a60aa4",
+				"id": "6eb1bbae-6357-4417-b642-551ea80174e1",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
