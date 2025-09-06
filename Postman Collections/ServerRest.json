@@ -1416,7 +1416,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT013]Buscar usuário Admin de teste",
+							"name": "[CT013]Buscar usuário Admin para login",
 							"event": [
 								{
 									"listen": "test",
@@ -1463,7 +1463,7 @@
 									"mode": "raw",
 									"raw": ""
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{login_id}}"
 							},
 							"response": []
 						}
@@ -3478,12 +3478,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
-									}
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -3495,7 +3489,37 @@
 							"response": []
 						}
 					],
-					"id": "77528057-eedb-47fc-8308-db671077067c"
+					"id": "77528057-eedb-47fc-8308-db671077067c",
+					"auth": {
+						"type": "bearer",
+						"bearer": {
+							"token": "{{token_adm}}"
+						}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "72e5e222-c931-4f2f-a95e-d2667f90db45",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b797a17d-8551-46af-8e3b-7b7f521b7bdf",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
 					"name": "Buscar",
@@ -3508,7 +3532,37 @@
 					"id": "81693482-b4f9-4559-bd84-67243a9aace5"
 				}
 			],
-			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd"
+			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd",
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token_adm}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d81e2497-60ab-4c3a-b025-e4f97e885ba6",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e6015e7-ce99-4d2a-92e6-cd3b1d6c6548",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.globals.get(\"{{token_adm}}\", token)"
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [
