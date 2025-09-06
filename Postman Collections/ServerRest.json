@@ -1369,6 +1369,15 @@
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{URL_ServerRest}}/usuarios/{{edit_id}}",
 									"host": [
@@ -3455,6 +3464,40 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Carrinho",
+			"item": [
+				{
+					"name": "Cadastrar",
+					"item": [
+						{
+							"name": "New Request",
+							"id": "6d2de81f-e2d3-4d6b-8a98-993483c87b80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"id": "77528057-eedb-47fc-8308-db671077067c"
+				},
+				{
+					"name": "Buscar",
+					"item": [],
+					"id": "5b019dcf-018b-437d-b7ae-093eb7bd1746"
+				},
+				{
+					"name": "Excluir",
+					"item": [],
+					"id": "81693482-b4f9-4559-bd84-67243a9aace5"
+				}
+			],
+			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd"
 		}
 	],
 	"event": [
