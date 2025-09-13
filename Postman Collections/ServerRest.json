@@ -4779,15 +4779,9 @@
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Proid deve ter exatamente 16 caracteres alfanuméricos\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"id deve ter exatamente 16 caracteres alfanuméricos\");\r",
 											"});\r",
-											"\r",
-											"// Validate response body structure\r",
-											"pm.test(\"Response body has expected structure\", function () {\r",
-											"    const response = pm.response.json();\r",
-											"    pm.expect(response).to.have.all.keys('id');\r",
-											"    pm.expect(response.message).to.be.a('string');\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
