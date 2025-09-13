@@ -540,9 +540,7 @@
 											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 											"let response = pm.response.json();\r",
 											"let id = response._id;\r",
-											"let email = response.email\r",
 											"pm.globals.set(\"id_user\", id);\r",
-											"pm.globals.set(\"email_cad\", email)\r",
 											"\r",
 											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
@@ -721,6 +719,19 @@
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"teste@qa01.com\");\r",
 											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a8fe8d0d-6be9-4f95-873b-04c942067714",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_user\", id);"
 										],
 										"type": "text/javascript",
 										"packages": {}
