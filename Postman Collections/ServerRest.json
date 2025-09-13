@@ -621,6 +621,15 @@
 									"script": {
 										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
 										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let name = response.usuarios.nome;\r",
+											"let email = response.usuarios.email;\r",
+											"let pass = response.usuarios.password;\r",
+											"pm.globals.set(\"nome_busca\", name);\r",
+											"pm.globals.set(\"email_busca\", email);\r",
+											"pm.globals.set(\"senha_busca\", pass);\r",
+											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
@@ -916,10 +925,41 @@
 											"    pm.response.to.have.status(\"OK\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"testeqa1234\");\r",
-											"});"
+											"const response = pm.response.json();\r",
+											"\r",
+											"// Check response structure\r",
+											"pm.test(\"Response has 'quantidade' and 'usuarios' properties\", function () {\r",
+											"    pm.expect(response).to.have.property('quantidade');\r",
+											"    pm.expect(response).to.have.property('usuarios');\r",
+											"});\r",
+											"\r",
+											"// Validate 'quantidade' is a number\r",
+											"pm.test(\"'quantidade' is a number\", function () {\r",
+											"    pm.expect(response.quantidade).to.be.a('number');\r",
+											"});\r",
+											"\r",
+											"// Check 'usuarios' is an array\r",
+											"pm.test(\"'usuarios' is an array\", function () {\r",
+											"    pm.expect(response.usuarios).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"// Validate each user object in 'usuarios' array\r",
+											"response.usuarios.forEach((usuario) => {\r",
+											"    pm.test(\"Each user has required properties\", function () {\r",
+											"        pm.expect(usuario).to.have.property('nome');\r",
+											"        pm.expect(usuario).to.have.property('email');\r",
+											"        pm.expect(usuario).to.have.property('password');\r",
+											"        pm.expect(usuario).to.have.property('administrador');\r",
+											"        pm.expect(usuario).to.have.property('_id');\r",
+											"    });\r",
+											"\r",
+											"    // Validate 'nome' and 'email' are strings\r",
+											"    pm.test(\"User 'nome' and 'email' are strings\", function () {\r",
+											"        pm.expect(usuario.nome).to.be.a('string');\r",
+											"        pm.expect(usuario.email).to.be.a('string');\r",
+											"    });\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -934,7 +974,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?password=testeqa1234",
+									"raw": "{{URL_ServerRest}}/usuarios?password={{pass_cad}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -944,24 +984,23 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "4alroLhKVkNX177y",
+											"value": "{{id_user}}",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA001",
+											"value": "{{nome_cad}}",
 											"disabled": true
 										},
 										{
 											"key": "email",
-											"value": "teste@qa01.com",
+											"value": "{{email_cad}}",
 											"disabled": true
 										},
 										{
 											"key": "password",
-											"value": "testeqa1234",
-											"type": "text"
+											"value": "{{pass_cad}}"
 										},
 										{
 											"key": "administrador",
@@ -991,6 +1030,27 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+											"});\r",
+											"\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"// Test for response structure and properties\r",
+											"pm.test(\"Response structure is valid\", function () {\r",
+											"    pm.expect(response).to.have.all.keys('quantidade', 'usuarios');\r",
+											"    pm.expect(response.quantidade).to.be.a('number');\r",
+											"    pm.expect(response.usuarios).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"// Test for each user in the usuarios array\r",
+											"response.usuarios.forEach(user => {\r",
+											"    pm.test(\"User object has required properties\", function () {\r",
+											"        pm.expect(user).to.have.all.keys('nome', 'email', 'password', 'administrador', '_id');\r",
+											"        pm.expect(user.nome).to.be.a('string');\r",
+											"        pm.expect(user.email).to.be.a('string');\r",
+											"        pm.expect(user.password).to.be.a('string');\r",
+											"        pm.expect(user.administrador).to.be.a('string');\r",
+											"        pm.expect(user._id).to.be.a('string');\r",
+											"    });\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -1037,8 +1097,7 @@
 										},
 										{
 											"key": "administrador",
-											"value": "true",
-											"type": "text"
+											"value": "true"
 										}
 									]
 								}
