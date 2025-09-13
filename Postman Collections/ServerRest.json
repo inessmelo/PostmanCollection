@@ -3385,6 +3385,93 @@
 					"name": "Cadastrar",
 					"item": [
 						{
+							"name": "Cadastrar usuário não Admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_user_edit\", id);\r",
+											"\r",
+											"\r",
+											"//===========================================\r",
+											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
+											"let requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"// Pegar campos específicos do body\r",
+											"let username = requestBody.nome;\r",
+											"let email = requestBody.email;\r",
+											"let password = requestBody.password;\r",
+											"let adm = requestBody.administrador;\r",
+											"\r",
+											"// Armazena em variáveis de ambiente\r",
+											"pm.environment.set(\"nome_edit\", username);\r",
+											"pm.environment.set(\"email_edit\", email);\r",
+											"pm.environment.set(\"pass_edit\", password);\r",
+											"pm.environment.set(\"adm_edit\", adm);\r",
+											"\r",
+											"// Log no console para conferir\r",
+											"console.log(\"Nome salvo:\", username);\r",
+											"console.log(\"Email salvo:\", email);\r",
+											"console.log(\"Senha salvo:\", password);\r",
+											"console.log(\"Admin salvo\", adm);\r",
+											"//========================================================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "0ade285c-7e10-4d33-9f68-0d56c1af74f8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
 							"name": "[CT001]Validar token de acesso ausente",
 							"event": [
 								{
@@ -3587,7 +3674,7 @@
 							"response": []
 						},
 						{
-							"name": "Logar com usuario não Admin Copy",
+							"name": "Logar com usuario Admin",
 							"event": [
 								{
 									"listen": "test",
@@ -3605,7 +3692,7 @@
 											"\r",
 											"// Salva apenas o token limpo em variável de ambiente\r",
 											"if (token) {\r",
-											"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
+											"    pm.globals.set(\"authTokenAdmin\", token);\r",
 											"    console.log(\"Token capturado (sem Bearer):\", token);\r",
 											"} else {\r",
 											"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
@@ -3711,7 +3798,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
+										"token": "{{authTokenAdmin}}"
 									}
 								},
 								"method": "POST",
