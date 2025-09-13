@@ -537,6 +537,11 @@
 									"script": {
 										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
 										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_user\", id);\r",
+											"\r",
+											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
@@ -619,7 +624,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?_id=4alroLhKVkNX177y",
+									"raw": "{{URL_ServerRest}}/usuarios?_id={{id_user}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -629,8 +634,7 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "4alroLhKVkNX177y",
-											"type": "text"
+											"value": "{{id_user}}"
 										},
 										{
 											"key": "nome",
