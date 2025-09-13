@@ -576,7 +576,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{semha}}\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
