@@ -2962,17 +2962,31 @@
 										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 400\", function () {\r",
-											"    pm.response.to.have.status(400);\r",
-											"    pm.response.to.have.status(\"Not Found\");\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
 											"});\r",
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
 											"});\r",
 											"\r",
-											""
+											"// Check response time is less than 300ms\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Validate response body structure\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response body has required properties\", function () {\r",
+											"    pm.expect(response).to.have.all.keys(\"message\", \"_id\");\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -3005,6 +3019,58 @@
 				{
 					"name": "Excluir",
 					"item": [
+						{
+							"name": "Cadastro de usuário",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"delete_id\", id);\r",
+											"\r",
+											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "31c094d8-2501-4011-9d11-9965af08ca9c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
 						{
 							"name": "[CT001]Excluir usuário nao existente por ID",
 							"event": [
@@ -3457,58 +3523,6 @@
 									}
 								},
 								"url": "{{URL_ServerRest}}/usuarios/{{id}}"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT013]Validar cadastro de usuário para exclusão",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
-										"exec": [
-											"let response = pm.response.json();\r",
-											"let id = response._id;\r",
-											"pm.globals.set(\"delete_id\", id);\r",
-											"\r",
-											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "31c094d8-2501-4011-9d11-9965af08ca9c",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
 						}
