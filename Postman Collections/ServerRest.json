@@ -606,9 +606,9 @@
 											"let name = response.usuarios.nome;\r",
 											"let email = response.usuarios.email;\r",
 											"let pass = response.usuarios.password;\r",
-											"pm.globals.set(\"name_user\", name);\r",
-											"pm.globals.set(\"email_user\", email);\r",
-											"pm.globals.set(\"pass_user\", pass);\r",
+											"pm.globals.set(\"nome_busca\", name);\r",
+											"pm.globals.set(\"email_busca\", email);\r",
+											"pm.globals.set(\"senha_busca\", pass);\r",
 											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 200\", function () {\r",
@@ -3640,7 +3640,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "3f72f675-6748-487a-a5fa-de82e0f0b636",
+				"id": "fe8b5b8b-6236-4a99-87e6-dca173d1f041",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -3702,16 +3702,6 @@
 					"pm.environment.set(\"status\", status);\r",
 					"\r",
 					"\r",
-					"\r",
-					"//=================GENDER=================\r",
-					"//RETONAR MALE OU FEMALE NO CAMPO GENDER\r",
-					"function randomBoolean() {\r",
-					"    return Math.random() < 0.5;\r",
-					"}\r",
-					"let sexo = randomBoolean() ? \"male\" : \"female\";\r",
-					"pm.environment.set(\"gender\", sexo);\r",
-					"\r",
-					"\r",
 					"//=================SENHA=================\r",
 					"//RETONAR SENHA COM 6 CARACTERES\r",
 					"function generatePassword(length) {\r",
@@ -3757,7 +3747,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3921a251-f8c0-4879-ba94-292a189e552d",
+				"id": "5e5c342e-5623-437c-a5bb-4296283d8dec",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
