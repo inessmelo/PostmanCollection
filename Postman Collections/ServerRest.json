@@ -540,7 +540,9 @@
 											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 											"let response = pm.response.json();\r",
 											"let id = response._id;\r",
+											"let email = response.email\r",
 											"pm.globals.set(\"id_user\", id);\r",
+											"pm.globals.set(\"email_cad\", email)\r",
 											"\r",
 											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
@@ -582,7 +584,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -733,7 +735,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email={{email_busca}}",
+									"raw": "{{URL_ServerRest}}/usuarios?email={{email_cad}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -755,7 +757,7 @@
 										},
 										{
 											"key": "email",
-											"value": "{{email_busca}}"
+											"value": "{{email_cad}}"
 										},
 										{
 											"key": "password",
