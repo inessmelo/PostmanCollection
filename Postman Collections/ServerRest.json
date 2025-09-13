@@ -4719,6 +4719,35 @@
 					"item": [
 						{
 							"name": "[CT001]Buscar produto nao cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b87a7663-deef-4846-86f2-77699bb0d170",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Produto não encontrado\");\r",
+											"});\r",
+											"\r",
+											"// Validate response body structure\r",
+											"pm.test(\"Response body has expected structure\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.all.keys('message');\r",
+											"    pm.expect(response.message).to.be.a('string');\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "fd49259e-fdd2-4a1a-aa1e-8bbd57b895c2",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -4736,17 +4765,40 @@
 						},
 						{
 							"name": "[CT002]Buscar produto com dados invalidos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3c3263dc-68d0-44fb-a911-6a9ee289ee55",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Proid deve ter exatamente 16 caracteres alfanuméricos\");\r",
+											"});\r",
+											"\r",
+											"// Validate response body structure\r",
+											"pm.test(\"Response body has expected structure\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.all.keys('id');\r",
+											"    pm.expect(response.message).to.be.a('string');\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "194cdba1-e8a2-4997-8ec5-92b2352785c8",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{authTokenNaoAdmin}}"
-									}
-								},
 								"method": "GET",
 								"header": [],
 								"body": {
