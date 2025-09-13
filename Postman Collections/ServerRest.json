@@ -2908,7 +2908,25 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check the response time\r",
+											"pm.test(\"Response time is less than 500ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"// Validate the response body structure\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response body has the correct structure\", function () {\r",
+											"    pm.expect(response).to.have.property(\"message\");\r",
+											"    pm.expect(response.message).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2944,15 +2962,17 @@
 										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 201\", function () {\r",
-											"    pm.response.to.have.status(201);\r",
-											"    pm.response.to.have.status(\"Created\");\r",
+											"pm.test(\"Status code retorna 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
 											"});\r",
 											"\r",
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"});"
+											"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+											"});\r",
+											"\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2975,7 +2995,7 @@
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/naoendocntrado@111"
+								"url": "{{URL_ServerRest}}/usuarios/naoendocntrado@11155"
 							},
 							"response": []
 						}
