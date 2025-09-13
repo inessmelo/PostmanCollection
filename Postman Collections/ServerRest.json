@@ -1880,7 +1880,22 @@
 											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"password não pode ficar em branco\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false'\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"// Validate the structure of the response body\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response body has required properties\", function () {\r",
+											"    pm.expect(response).to.have.property(\"nome\");\r",
+											"    pm.expect(response).to.have.property(\"email\");\r",
+											"    pm.expect(response).to.have.property(\"password\");\r",
+											"    pm.expect(response).to.have.property(\"administrador\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1924,7 +1939,19 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"nome não pode ficar em branco\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time is less than 300ms\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Validate the response structure\r",
+											"pm.test(\"Response body should have the 'nome' property\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property('nome');\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1940,7 +1967,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1968,7 +1995,24 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"email não pode ficar em branco\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time\r",
+											"pm.test(\"Response time is less than 500ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"// Validate response structure\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response has expected properties\", function () {\r",
+											"    pm.expect(response).to.have.property(\"email\");\r",
+											"});\r",
+											"\r",
+											"// Validate the email property type\r",
+											"pm.test(\"Email property is a string\", function () {\r",
+											"    pm.expect(response.email).to.be.a('string');\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1984,7 +2028,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2012,7 +2056,19 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"password não pode ficar em branco\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Check response body structure\r",
+											"pm.test(\"Response body has 'password' property\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property(\"password\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
