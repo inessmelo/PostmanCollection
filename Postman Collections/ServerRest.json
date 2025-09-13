@@ -733,7 +733,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email={{email_user}}",
+									"raw": "{{URL_ServerRest}}/usuarios?email={{email_busca}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -749,17 +749,17 @@
 										},
 										{
 											"key": "nome",
-											"value": "{{name_user}}",
+											"value": "{{nome_busca}}",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "email",
-											"value": "{{email_user}}"
+											"value": "{{email_busca}}"
 										},
 										{
 											"key": "password",
-											"value": "{{pass_user}}",
+											"value": "{{senha_busca}}",
 											"type": "text",
 											"disabled": true
 										},
