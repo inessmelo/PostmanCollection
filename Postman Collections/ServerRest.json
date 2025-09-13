@@ -537,6 +537,7 @@
 									"script": {
 										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
 										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 											"let response = pm.response.json();\r",
 											"let id = response._id;\r",
 											"pm.globals.set(\"id_user\", id);\r",
@@ -581,7 +582,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{semha}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -720,7 +721,7 @@
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA001",
+											"value": "{{name_user}}",
 											"type": "text",
 											"disabled": true
 										},
@@ -730,7 +731,7 @@
 										},
 										{
 											"key": "password",
-											"value": "testeqa1234",
+											"value": "{{pass_user}}",
 											"type": "text",
 											"disabled": true
 										},
