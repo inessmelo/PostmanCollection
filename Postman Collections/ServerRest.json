@@ -2339,7 +2339,32 @@
 									"script": {
 										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
 										"exec": [
-											"//RETORNO DO CODIGO E O STATUS\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Check response time is within acceptable limits\r",
+											"pm.test(\"Response time is less than 400ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+											"});\r",
+											"\r",
+											"// Validate the structure of the response body\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response body has required properties\", function () {\r",
+											"    pm.expect(response).to.have.property(\"message\");\r",
+											"    pm.expect(response).to.have.property(\"_id\");\r",
+											"});\r",
+											"\r",
+											"// Validate the message property\r",
+											"pm.test(\"Message property is correct\", function () {\r",
+											"    pm.expect(response.message).to.equal(\"Cadastro realizado com sucesso\");\r",
+											"});\r",
+											"\r",
+											"// Validate the _id property is a string\r",
+											"pm.test(\"_id is a string\", function () {\r",
+											"    pm.expect(response._id).to.be.a('string');\r",
+											"});//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"    pm.response.to.have.status(\"Created\");\r",
@@ -2386,10 +2411,6 @@
 									"script": {
 										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
 										"exec": [
-											"let response = pm.response.json();\r",
-											"let id = response._id;\r",
-											"pm.globals.set(\"nok_admin_id\", id);\r",
-											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
@@ -2400,7 +2421,38 @@
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response status code\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(201);\r",
+											"});\r",
+											"\r",
+											"// Validate response time\r",
+											"pm.test(\"Response time is less than 500ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Parse response body\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"// Validate message property in response\r",
+											"pm.test(\"Response should contain message property\", function () {\r",
+											"    pm.expect(response).to.have.property(\"message\");\r",
+											"    pm.expect(response.message).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"// Validate _id property in response\r",
+											"pm.test(\"Response should contain _id property\", function () {\r",
+											"    pm.expect(response).to.have.property(\"_id\");\r",
+											"    pm.expect(response._id).to.be.a(\"string\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2416,218 +2468,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste não Admin\",\r\n    \"email\": \"naoadmin@teste.com\",\r\n    \"password\": \"naoadmin@123\",\r\n    \"administrador\": \"false\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{URL_ServerRest}}/usuarios"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT011]Validar cadastro de usuário para logar",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
-										"exec": [
-											"let response = pm.response.json();\r",
-											"let id = response._id;\r",
-											"pm.globals.set(\"login_id\", id);\r",
-											"\r",
-											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 201\", function () {\r",
-											"    pm.response.to.have.status(201);\r",
-											"    pm.response.to.have.status(\"Created\");\r",
-											"});\r",
-											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "a5aa5f74-6948-4a44-8a0c-fc4afd1c0c93",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste QA001\",\r\n    \"email\": \"teste@qa01.com\",\r\n    \"password\": \"testeqa1234\",\r\n    \"administrador\": \"true\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{URL_ServerRest}}/usuarios"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT012]Validar cadastro de usuário",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
-										"exec": [
-											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 201\", function () {\r",
-											"    pm.response.to.have.status(201);\r",
-											"    pm.response.to.have.status(\"Created\");\r",
-											"});\r",
-											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
-											"});\r",
-											"\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "b60a9c1c-dd2f-4df5-a4ec-073b131cd107",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste exclusão\",\r\n    \"email\": \"excluir@teste.com.br\",\r\n    \"password\": \"excluir@1234\",\r\n    \"administrador\": \"true\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{URL_ServerRest}}/usuarios"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT013]Validar cadastro de usuário para exclusão",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
-										"exec": [
-											"let response = pm.response.json();\r",
-											"let id = response._id;\r",
-											"pm.globals.set(\"delete_id\", id);\r",
-											"\r",
-											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "31c094d8-2501-4011-9d11-9965af08ca9c",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{URL_ServerRest}}/usuarios"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT014]Validar cadastro de usuário para edição",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
-										"exec": [
-											"let response = pm.response.json();\r",
-											"let id = response._id;\r",
-											"pm.globals.set(\"edit_id\", id);\r",
-											"\r",
-											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "d00bc1f8-2748-4eba-a67b-de4346fa6119",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2949,6 +2790,58 @@
 									}
 								},
 								"url": "{{URL_ServerRest}}/usuarios/naoendocntrado@111"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT014]Validar cadastro de usuário para edição",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"edit_id\", id);\r",
+											"\r",
+											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "d00bc1f8-2748-4eba-a67b-de4346fa6119",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
 						}
@@ -3410,6 +3303,58 @@
 									}
 								},
 								"url": "{{URL_ServerRest}}/usuarios/{{id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT013]Validar cadastro de usuário para exclusão",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"delete_id\", id);\r",
+											"\r",
+											"pm.test(\"Validar cadastro com sucesso\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "31c094d8-2501-4011-9d11-9965af08ca9c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
 							},
 							"response": []
 						}
