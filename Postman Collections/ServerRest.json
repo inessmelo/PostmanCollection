@@ -2778,7 +2778,25 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time is less than 300ms\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Validate response structure\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response has message property\", function () {\r",
+											"    pm.expect(response).to.have.property(\"message\");\r",
+											"    pm.expect(response.message).to.be.a(\"string\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2794,14 +2812,14 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@123\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{nome_edit}}\",\r\n    \"email\": \"{{email_edit}}\",\r\n    \"password\": \"{{pass_edit}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{id_user_edit}}"
 							},
 							"response": []
 						},
@@ -2822,7 +2840,31 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Parse response body\r",
+											"const response = pm.response.json();\r",
+											"\r",
+											"// Check if message property exists\r",
+											"pm.test(\"Response has message property\", function () {\r",
+											"    pm.expect(response).to.have.property(\"message\");\r",
+											"});\r",
+											"\r",
+											"// Validate message property type\r",
+											"pm.test(\"Message property is a string\", function () {\r",
+											"    pm.expect(response.message).to.be.a(\"string\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2838,14 +2880,14 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Teste Editar\",\r\n    \"email\": \"editar@teste.com.br\",\r\n    \"password\": \"editar@123\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{nome_edit}}\",\r\n    \"email\": \"{{email_edit}}\",\r\n    \"password\": \"{{pass_edit}}\",\r\n    \"administrador\": \"{{adm_edit}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{id_user_edit}}"
 							},
 							"response": []
 						},
@@ -2882,14 +2924,14 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{URL_ServerRest}}/usuarios/{{edit_id}}"
+								"url": "{{URL_ServerRest}}/usuarios/{{id_user_edit}}"
 							},
 							"response": []
 						},
