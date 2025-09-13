@@ -4581,12 +4581,103 @@
 							"response": []
 						},
 						{
+							"name": "Cadastrar um produto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_prod\", id);\r",
+											"\r",
+											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
+											"let requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"// Pegar campos específicos do body\r",
+											"let product = requestBody.nome;\r",
+											"let price = requestBody.preco;\r",
+											"let description = requestBody.descricao;\r",
+											"let qde = requestBody.quantidade;\r",
+											"\r",
+											"// Armazena em variáveis de ambiente\r",
+											"pm.environment.set(\"name_prod\", product);\r",
+											"pm.environment.set(\"price_prod\", price);\r",
+											"pm.environment.set(\"desc_prod\", description);\r",
+											"pm.environment.set(\"qde_prod\", qde);\r",
+											"\r",
+											"// Log no console para conferir\r",
+											"console.log(\"Produto salvo:\", product);\r",
+											"console.log(\"Preço salvo:\", price);\r",
+											"console.log(\"Descrição salvo:\", description);\r",
+											"console.log(\"Qde salvo\", qde);\r",
+											"\r",
+											"//=========================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "9a197916-9978-42c4-bbf9-6eafd7d99f97",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenAdmin}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": \"{{qde_gerada}}\",\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": \"{{qde_gerada}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
 							"name": "[CT001]Buscar produto nao cadastrado",
 							"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
 								"method": "GET",
 								"header": [],
 								"body": {
@@ -4596,9 +4687,84 @@
 								"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
 							},
 							"response": []
+						},
+						{
+							"name": "[CT001]Buscar produto nao cadastrado Copy",
+							"id": "95bdfb54-9513-41c8-8476-35ea414dbb0a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/{{name_prod}}"
+							},
+							"response": []
 						}
 					],
 					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b"
+				},
+				{
+					"name": "Buscar com usuário não Admin",
+					"item": [
+						{
+							"name": "[CT001]Buscar produto nao cadastrado",
+							"id": "fd49259e-fdd2-4a1a-aa1e-8bbd57b895c2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT001]Buscar produto nao cadastrado Copy",
+							"id": "194cdba1-e8a2-4997-8ec5-92b2352785c8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/{{name_prod}}"
+							},
+							"response": []
+						}
+					],
+					"id": "f9d9033a-fc56-4b87-b52b-9ece20d54498"
 				},
 				{
 					"name": "Excluir",
