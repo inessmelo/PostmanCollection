@@ -4724,12 +4724,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{authTokenNaoAdmin}}"
-									}
-								},
 								"method": "GET",
 								"header": [],
 								"body": {
@@ -4741,7 +4735,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT001]Buscar produto nao cadastrado Copy",
+							"name": "[CT002]Buscar produto com dados invalidos",
 							"id": "194cdba1-e8a2-4997-8ec5-92b2352785c8",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -4759,12 +4753,42 @@
 									"mode": "raw",
 									"raw": ""
 								},
-								"url": "{{URL_ServerRest}}/produtos/{{name_prod}}"
+								"url": "{{URL_ServerRest}}/produtos/Adcf@124"
 							},
 							"response": []
 						}
 					],
-					"id": "f9d9033a-fc56-4b87-b52b-9ece20d54498"
+					"id": "f9d9033a-fc56-4b87-b52b-9ece20d54498",
+					"auth": {
+						"type": "bearer",
+						"bearer": {
+							"token": "{{authTokenNaoAdmin}}"
+						}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bfddb39c-cdf5-4f7e-934b-6616adef96d5",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a1689f9-a746-4ab5-ab99-668e3948a2d4",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
 					"name": "Excluir",
