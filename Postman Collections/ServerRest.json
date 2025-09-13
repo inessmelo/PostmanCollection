@@ -600,6 +600,15 @@
 									"script": {
 										"id": "f9ee994e-15db-4ed0-a3df-c2b5e9ce97a3",
 										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let name = response.usuarios.nome;\r",
+											"let email = response.usuarios.email;\r",
+											"let pass = response.usuarios.password;\r",
+											"pm.globals.set(\"name_user\", name);\r",
+											"pm.globals.set(\"email_user\", email);\r",
+											"pm.globals.set(\"pass_user\", pass);\r",
+											"\r",
 											"//RETORNO DO CODIGO E O STATUS\r",
 											"pm.test(\"Status code retorna 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
@@ -695,7 +704,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=teste@qa01.com",
+									"raw": "{{URL_ServerRest}}/usuarios?email={{email_user}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -705,7 +714,7 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "4alroLhKVkNX177y",
+											"value": "{{id_user}}",
 											"type": "text",
 											"disabled": true
 										},
@@ -717,7 +726,7 @@
 										},
 										{
 											"key": "email",
-											"value": "teste@qa01.com"
+											"value": "{{email_user}}"
 										},
 										{
 											"key": "password",
