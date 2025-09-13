@@ -4744,14 +4744,13 @@
 													"\r",
 													"//RETORNO DO RESPONSE\r",
 													"pm.test(\"Exibe a msg de alerta\", function () {\r",
-													"    pm.expect(pm.response.text()).to.include(\"Produto não encontrado\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"id deve ter exatamente 16 caracteres alfanuméricos\");\r",
 													"});\r",
 													"\r",
 													"// Validate response body structure\r",
 													"pm.test(\"Response body has expected structure\", function () {\r",
 													"    const response = pm.response.json();\r",
-													"    pm.expect(response).to.have.all.keys('message');\r",
-													"    pm.expect(response.message).to.be.a('string');\r",
+													"    pm.expect(response).to.have.all.keys('id');\r",
 													"});\r",
 													"\r",
 													"// Check content type of the response\r",
@@ -4840,9 +4839,42 @@
 										"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
 									},
 									"response": []
+								}
+							],
+							"id": "f9d9033a-fc56-4b87-b52b-9ece20d54498",
+							"auth": {
+								"type": "noauth"
+							},
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "83ec729b-2518-4c99-88a0-54c74e304783",
+										"type": "text/javascript",
+										"packages": {},
+										"exec": [
+											""
+										]
+									}
 								},
 								{
-									"name": "[CT003]Buscar por ID do produto Copy",
+									"listen": "test",
+									"script": {
+										"id": "8b37053f-49fd-4903-bb3b-d25473401524",
+										"type": "text/javascript",
+										"packages": {},
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Buscar com usuario Admin",
+							"item": [
+								{
+									"name": "[CT004]Buscar por nome do produto",
 									"event": [
 										{
 											"listen": "test",
@@ -4894,6 +4926,29 @@
 											"raw": ""
 										},
 										"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
+									},
+									"response": []
+								},
+								{
+									"name": "[CT001]Buscar produto nao cadastrado",
+									"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenNaoAdmin}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
 									},
 									"response": []
 								},
@@ -4986,63 +5041,8 @@
 										}
 									},
 									"response": []
-								},
-								{
-									"name": "[CT001]Buscar produto nao cadastrado",
-									"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": {
-												"token": "{{authTokenNaoAdmin}}"
-											}
-										},
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
-									},
-									"response": []
 								}
 							],
-							"id": "f9d9033a-fc56-4b87-b52b-9ece20d54498",
-							"auth": {
-								"type": "noauth"
-							},
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "83ec729b-2518-4c99-88a0-54c74e304783",
-										"type": "text/javascript",
-										"packages": {},
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "8b37053f-49fd-4903-bb3b-d25473401524",
-										"type": "text/javascript",
-										"packages": {},
-										"exec": [
-											""
-										]
-									}
-								}
-							]
-						},
-						{
-							"name": "Buscar com usuario Admin",
-							"item": [],
 							"id": "25433950-0263-4b8c-b1ec-a4463d184284"
 						}
 					],
