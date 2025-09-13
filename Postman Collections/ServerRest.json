@@ -3458,14 +3458,14 @@
 											"let response = pm.response.json();\r",
 											"\r",
 											"// Supondo que o token venha como \"Bearer xxxxxxx\"\r",
-											"let rawToken = response.token || response.access_token || (response.data && response.data.token);\r",
+											"let rawToken = response.authorization;\r",
 											"\r",
 											"// Remove o prefixo \"Bearer \" se existir\r",
 											"let token = rawToken ? rawToken.replace(/^Bearer\\s+/i, '') : null;\r",
 											"\r",
 											"// Salva apenas o token limpo em variável de ambiente\r",
 											"if (token) {\r",
-											"    pm.environment.set(\"authTokenNaoAdmin\", token);\r",
+											"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
 											"    console.log(\"Token capturado (sem Bearer):\", token);\r",
 											"} else {\r",
 											"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
@@ -3568,7 +3568,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hb2FkbWluQHRlc3RlLmNvbSIsInBhc3N3b3JkIjoibmFvYWRtaW5AMTIzIiwiaWF0IjoxNzU2NTk1NjI5LCJleHAiOjE3NTY1OTYyMjl9.nwcM_4ijBFtOrhEJHmM-v2HPxLilFYQxLTjNP7aYWgM"
+										"token": "{{authTokenNaoAdmin}}"
 									}
 								},
 								"method": "POST",
@@ -3583,6 +3583,96 @@
 									}
 								},
 								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
+							"name": "Logar com usuario não Admin Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
+										"exec": [
+											"// Converte o response em JSON\r",
+											"let response = pm.response.json();\r",
+											"\r",
+											"// Supondo que o token venha como \"Bearer xxxxxxx\"\r",
+											"let rawToken = response.authorization;\r",
+											"\r",
+											"// Remove o prefixo \"Bearer \" se existir\r",
+											"let token = rawToken ? rawToken.replace(/^Bearer\\s+/i, '') : null;\r",
+											"\r",
+											"// Salva apenas o token limpo em variável de ambiente\r",
+											"if (token) {\r",
+											"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
+											"    console.log(\"Token capturado (sem Bearer):\", token);\r",
+											"} else {\r",
+											"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
+											"}\r",
+											"//=========================================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Retorna o Status Code 200 Bad Request\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Login realizado com sucesso\")\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "37f6fa03-7908-46ca-905e-81f1989c41d6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "name",
+										"value": "Authorization",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"naoadmin@teste.com\",\r\n    \"password\": \"naoadmin@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ServerRest}}/login?Name=Authorization ",
+									"host": [
+										"{{URL_ServerRest}}"
+									],
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "Name",
+											"value": "Authorization "
+										},
+										{
+											"key": "In",
+											"value": "header",
+											"disabled": true
+										}
+									]
+								}
 							},
 							"response": []
 						},
