@@ -3385,7 +3385,7 @@
 					"name": "Cadastrar",
 					"item": [
 						{
-							"name": "Cadastro de usuário Copy",
+							"name": "Cadastro de usuário não Admin",
 							"event": [
 								{
 									"listen": "test",
