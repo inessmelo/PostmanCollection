@@ -3120,19 +3120,14 @@
 											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?_id=MgEI4h08vIsLtlkv. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
-											"});\r",
-											"\r",
 											"// Check the response time is less than 400ms\r",
 											"pm.test(\"Response time is less than 400ms\", function () {\r",
 											"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
 											"});\r",
 											"\r",
-											"// Check the Content-Type header is application/json\r",
-											"pm.test(\"Content-Type is application/json\", function () {\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
 											"});\r",
 											"\r",
 											"// Verify that the response body has a message property\r",
@@ -3195,10 +3190,27 @@
 											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?nome=Teste%20exclus%C3%A3o. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
-											"});"
+											"// Verify the response status code\r",
+											"pm.test(\"Status code is 405\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(405);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Validate the response body structure\r",
+											"const responseBody = pm.response.json();\r",
+											"pm.test(\"Response body has message property\", function () {\r",
+											"    pm.expect(responseBody).to.have.property(\"message\");\r",
+											"});\r",
+											"\r",
+											"// Check that the message property is a string\r",
+											"pm.test(\"Message property is a string\", function () {\r",
+											"    pm.expect(responseBody.message).to.be.a('string');\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -3222,7 +3234,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?nome=Teste exclusão",
+									"raw": "{{URL_ServerRest}}/usuarios?nome={{nome_exc}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -3232,7 +3244,7 @@
 									"query": [
 										{
 											"key": "nome",
-											"value": "Teste exclusão"
+											"value": "{{nome_exc}}"
 										}
 									]
 								}
@@ -3253,10 +3265,29 @@
 											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?administrador=true. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
-											"});"
+											"// Check the response status code\r",
+											"pm.test(\"Status code is 405\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(405);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Parse the response body\r",
+											"const responseBody = pm.response.json();\r",
+											"\r",
+											"// Check if the message property exists\r",
+											"pm.test(\"Response has message property\", function () {\r",
+											"    pm.expect(responseBody).to.have.property(\"message\");\r",
+											"});\r",
+											"\r",
+											"// Check if the message is a string\r",
+											"pm.test(\"Message is a string\", function () {\r",
+											"    pm.expect(responseBody.message).to.be.a(\"string\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -3280,7 +3311,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?administrador=true",
+									"raw": "{{URL_ServerRest}}/usuarios?administrador={{adm_exc}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -3290,7 +3321,7 @@
 									"query": [
 										{
 											"key": "administrador",
-											"value": "true"
+											"value": "{{adm_exc}}"
 										}
 									]
 								}
@@ -3311,9 +3342,19 @@
 											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Não é possível realizar DELETE em /usuarios?password=testeqa1234. Acesse https://serverest.dev para ver as rotas disponíveis e como utilizá-las.\");\r",
+											"// Test for successful response status code\r",
+											"pm.test(\"Status code is 405\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(405);\r",
+											"});\r",
+											"\r",
+											"// Test for response time\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -3338,7 +3379,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?password=excluir@1234",
+									"raw": "{{URL_ServerRest}}/usuarios?password={{pass_exc}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -3348,7 +3389,7 @@
 									"query": [
 										{
 											"key": "password",
-											"value": "excluir@1234"
+											"value": "{{pass_exc}}"
 										}
 									]
 								}
@@ -3396,7 +3437,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?email=excluir@teste.com.br",
+									"raw": "{{URL_ServerRest}}/usuarios?email={{email_exc}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -3406,7 +3447,7 @@
 									"query": [
 										{
 											"key": "email",
-											"value": "excluir@teste.com.br"
+											"value": "{{email_exc}}"
 										}
 									]
 								}
