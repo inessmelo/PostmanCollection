@@ -4664,52 +4664,6 @@
 								"url": "{{URL_ServerRest}}/produtos"
 							},
 							"response": []
-						},
-						{
-							"name": "[CT001]Buscar produto nao cadastrado",
-							"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{authTokenNaoAdmin}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
-							},
-							"response": []
-						},
-						{
-							"name": "[CT001]Buscar produto nao cadastrado Copy",
-							"id": "95bdfb54-9513-41c8-8476-35ea414dbb0a",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{authTokenNaoAdmin}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": "{{URL_ServerRest}}/produtos/{{name_prod}}"
-							},
-							"response": []
 						}
 					],
 					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b"
@@ -4800,6 +4754,52 @@
 									"raw": ""
 								},
 								"url": "{{URL_ServerRest}}/produtos/Adcf@124"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT003]Buscar por ID do produto",
+							"id": "95bdfb54-9513-41c8-8476-35ea414dbb0a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/{{name_prod}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT001]Buscar produto nao cadastrado",
+							"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenNaoAdmin}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
 							},
 							"response": []
 						}
