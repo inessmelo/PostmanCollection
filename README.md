@@ -36,16 +36,18 @@ Próximos Passos
 - Principais ferramentas, linguagens e tipo de teste utilizadas nessa collection:
 - Linguagem: JavaScript
 - Ferramentas: Postman, GitLab , Newman
-- Tipos de Teste: Teste Funcional e Automação
+- Tipos de Teste: Teste Funcional, Teste de Performance e Automação
 
 ## 📂 Estrutura do Projeto
 
 - Postman Collections = Collection do Postman de cada API Rest  
 - README.md = Arquivo de informação sobre o projeto de teste
+- ServeRest = API de cadastro de Usuários, Produtos e inserir produtos no carrinho
+- 
 
 ## ▶️ Como Executar
 
-- Geração de token no GitHub para permitir a automação dos envios dos testes, eliminando a necessidade de executar manualmente comandos Git.
+- Geração de token SSH no GitHub para permitir a automação dos envios dos testes, eliminando a necessidade de executar manualmente comandos Git (opcional).
 - Criação de relatórios detalhados (Status Report) utilizando o Newman via linha de comando, garantindo maior visibilidade e rastreabilidade dos resultados dos testes.
 
 ## 📊 Resultados e Demonstrações
@@ -56,7 +58,7 @@ Próximos Passos
 ## 🚀 Aprendizados e Contribuições
 
 - Criação de scripts em JavaScript para geração de massa de dados utilizada nas requisições.   
-- Captura e reaproveitamento da massa de dados gerada em requisições anteriores para utilização em chamadas subsequentes.   
+- Reaproveitamento da massa de dados gerada em requisições anteriores para utilização em chamadas subsequentes.   
 - Expansão e detalhamento de cenários de teste dentro de cada requisição, cobrindo suas respectivas rotas.   
 - Geração de relatórios de execução (Status Report) por meio da integração do Newman com o Postman.
 - Automatizar a subida dos testes do Postman em tempo real para o GitHub sem efetuar comando GIT.   
