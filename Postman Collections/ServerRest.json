@@ -3708,7 +3708,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"{{nome_Adm}}\",\r\n    \"password\": \"{{pass_Adm}}\"\r\n}",
+									"raw": "{\r\n    \"email\": \"{{email_Adm}}\",\r\n    \"password\": \"{{pass_Adm}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3888,7 +3888,32 @@
 											"    pm.expect(pm.response.text()).to.include(\"preco deve ser um número\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"descricao não pode ficar em branco\");\r",
 											"    pm.expect(pm.response.text()).to.include(\"quantidade deve ser um número\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Check response time is less than 300ms\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Validate response content type\r",
+											"pm.test(\"Content-Type is application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"// Validate that the response body has the expected properties\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response body has the expected properties\", function () {\r",
+											"    pm.expect(response).to.have.all.keys('nome', 'preco', 'descricao', 'quantidade');\r",
+											"});\r",
+											"\r",
+											"// Validate the specific error messages in the response body\r",
+											"pm.test(\"Error messages are present in the response\", function () {\r",
+											"    pm.expect(response.nome).to.equal(\"nome não pode ficar em branco\");\r",
+											"    pm.expect(response.preco).to.equal(\"preco deve ser um número\");\r",
+											"    pm.expect(response.descricao).to.equal(\"descricao não pode ficar em branco\");\r",
+											"    pm.expect(response.quantidade).to.equal(\"quantidade deve ser um número\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
