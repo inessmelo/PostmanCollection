@@ -4255,7 +4255,9 @@
 											"// Check content type of the response\r",
 											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
 											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"});"
+											"});\r",
+											"\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -4305,6 +4307,11 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"Já existe produto com esse nome\");\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -4320,7 +4327,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1NjU5NTY0NCwiZXhwIjoxNzU2NTk2MjQ0fQ.g33Q5oWhU2SeQsClUwZ9LhUoy-Tk6N7C-hhAkDHi6v8"
+										"token": "{{authTokenAdmin}}"
 									}
 								},
 								"method": "POST",
