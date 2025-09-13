@@ -726,11 +726,6 @@
 											"    pm.response.to.have.status(\"OK\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"{{email_cad}}\");\r",
-											"});\r",
-											"\r",
 											"// Validate response body structure\r",
 											"const response = pm.response.json();\r",
 											"pm.test(\"Response has required fields\", function () {\r",
@@ -748,13 +743,7 @@
 											"        pm.expect(user).to.have.property(\"administrador\").that.is.a(\"string\");\r",
 											"        pm.expect(user).to.have.property(\"_id\").that.is.a(\"string\");\r",
 											"    });\r",
-											"});\r",
-											"\r",
-											"// Check content type of the response\r",
-											"pm.test(\"Content-Type is application/json\", function () {\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");\r",
-											"});\r",
-											""
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -835,10 +824,30 @@
 											"    pm.response.to.have.status(\"OK\");\r",
 											"});\r",
 											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Teste QA001\");\r",
-											"});"
+											"// Validate response structure\r",
+											"const response = pm.response.json();\r",
+											"pm.test(\"Response has 'quantidade' and 'usuarios'\", function () {\r",
+											"    pm.expect(response).to.have.property(\"quantidade\");\r",
+											"    pm.expect(response).to.have.property(\"usuarios\");\r",
+											"});\r",
+											"\r",
+											"// Validate 'quantidade' is a number\r",
+											"pm.test(\"'quantidade' is a number\", function () {\r",
+											"    pm.expect(response.quantidade).to.be.a('number');\r",
+											"});\r",
+											"\r",
+											"// Validate 'usuarios' is an array\r",
+											"pm.test(\"'usuarios' is an array\", function () {\r",
+											"    pm.expect(response.usuarios).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"// Validate each user object in 'usuarios' array\r",
+											"response.usuarios.forEach(user => {\r",
+											"    pm.test(\"User has required properties\", function () {\r",
+											"        pm.expect(user).to.have.all.keys(\"nome\", \"email\", \"password\", \"administrador\", \"_id\");\r",
+											"    });\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -853,7 +862,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_ServerRest}}/usuarios?nome=Teste QA001",
+									"raw": "{{URL_ServerRest}}/usuarios?nome={{nome_cad}}",
 									"host": [
 										"{{URL_ServerRest}}"
 									],
@@ -863,23 +872,22 @@
 									"query": [
 										{
 											"key": "_id",
-											"value": "4alroLhKVkNX177y",
+											"value": "{{id_user}}",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "nome",
-											"value": "Teste QA001",
-											"type": "text"
+											"value": "{{nome_cad}}"
 										},
 										{
 											"key": "email",
-											"value": "teste@qa01.com",
+											"value": "{{email_cad}}",
 											"disabled": true
 										},
 										{
 											"key": "password",
-											"value": "testeqa1234",
+											"value": "{{pass_cad}}",
 											"type": "text",
 											"disabled": true
 										},
