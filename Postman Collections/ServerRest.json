@@ -3385,6 +3385,180 @@
 					"name": "Cadastrar",
 					"item": [
 						{
+							"name": "Cadastro de usuário Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_user_exc\", id);\r",
+											"\r",
+											"\r",
+											"//===========================================\r",
+											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
+											"let requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"// Pegar campos específicos do body\r",
+											"let username = requestBody.nome;\r",
+											"let email = requestBody.email;\r",
+											"let password = requestBody.password;\r",
+											"let adm = requestBody.administrador;\r",
+											"\r",
+											"// Armazena em variáveis de ambiente\r",
+											"pm.environment.set(\"nome_exc\", username);\r",
+											"pm.environment.set(\"email_exc\", email);\r",
+											"pm.environment.set(\"pass_exc\", password);\r",
+											"pm.environment.set(\"adm_exc\", adm);\r",
+											"\r",
+											"// Log no console para conferir\r",
+											"console.log(\"Nome salvo:\", username);\r",
+											"console.log(\"Email salvo:\", email);\r",
+											"console.log(\"Senha salvo:\", password);\r",
+											"console.log(\"Admin salvo\", adm);\r",
+											"//========================================================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "54ef50ce-7a1f-49c2-96d5-5c4e339f590c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastro de usuário Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6c1d3283-8612-442d-a796-f24d61e3e9b8",
+										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_user_exc\", id);\r",
+											"\r",
+											"\r",
+											"//===========================================\r",
+											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
+											"let requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"// Pegar campos específicos do body\r",
+											"let username = requestBody.nome;\r",
+											"let email = requestBody.email;\r",
+											"let password = requestBody.password;\r",
+											"let adm = requestBody.administrador;\r",
+											"\r",
+											"// Armazena em variáveis de ambiente\r",
+											"pm.environment.set(\"nome_exc\", username);\r",
+											"pm.environment.set(\"email_exc\", email);\r",
+											"pm.environment.set(\"pass_exc\", password);\r",
+											"pm.environment.set(\"adm_exc\", adm);\r",
+											"\r",
+											"// Log no console para conferir\r",
+											"console.log(\"Nome salvo:\", username);\r",
+											"console.log(\"Email salvo:\", email);\r",
+											"console.log(\"Senha salvo:\", password);\r",
+											"console.log(\"Admin salvo\", adm);\r",
+											"//========================================================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7bd65298-a1cc-48b3-8c29-0f7e19f3bdc7",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "2719edc5-44f2-4839-87b0-c0ef9490adef",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/usuarios"
+							},
+							"response": []
+						},
+						{
 							"name": "[CT001]Validar token de acesso ausente",
 							"event": [
 								{
