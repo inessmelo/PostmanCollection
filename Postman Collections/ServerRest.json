@@ -2112,7 +2112,18 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"administrador deve ser 'true' ou 'false'\");\r",
-											"});"
+											"});\r",
+											"// Check response time is less than 300ms\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Validate response structure\r",
+											"pm.test(\"Response has expected properties\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property(\"administrador\");\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2128,7 +2139,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2156,7 +2167,20 @@
 											"//RETORNO DO RESPONSE\r",
 											"pm.test(\"Exibe a msg de alerta\", function () {\r",
 											"    pm.expect(pm.response.text()).to.include(\"email deve ser um email válido\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"// Validate the response time is within acceptable limits\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"// Validate the structure of the response body\r",
+											"pm.test(\"Response body has expected properties\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.property(\"email\");\r",
+											"    pm.expect(response.email).to.be.a('string');\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -2172,7 +2196,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{nome}}\",\r\n    \"email\": \"teste###qa.com\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"teste###qa.com\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2216,7 +2240,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{nome}}\",\r\n    \"email\": \"email@usado.com\",\r\n    \"password\": \"{{senha}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"email@usado.com\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
