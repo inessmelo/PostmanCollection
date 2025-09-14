@@ -4982,7 +4982,7 @@
 													"\r",
 													"// Salva apenas o token limpo em variável de ambiente\r",
 													"if (token) {\r",
-													"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
+													"    pm.globals.set(\"authTokenAdmin\", token);\r",
 													"    console.log(\"Token capturado (sem Bearer):\", token);\r",
 													"} else {\r",
 													"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
@@ -5023,7 +5023,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"{{email_nAdm}}\",\r\n    \"password\": \"{{pass_nAdm}}\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{email_Adm}}\",\r\n    \"password\": \"{{pass_Adm}}\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5054,7 +5054,7 @@
 									"response": []
 								},
 								{
-									"name": "[CT004]Buscar por nome do produto",
+									"name": "[CT001]Buscar por produto não cadastrado",
 									"event": [
 										{
 											"listen": "test",
@@ -5096,7 +5096,7 @@
 										"auth": {
 											"type": "bearer",
 											"bearer": {
-												"token": "{{authTokenNaoAdmin}}"
+												"token": "{{authTokenAdmin}}"
 											}
 										},
 										"method": "GET",
@@ -5105,7 +5105,7 @@
 											"mode": "raw",
 											"raw": ""
 										},
-										"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
+										"url": "{{URL_ServerRest}}/produtos/fKVxggRtJiudPGfF"
 									},
 									"response": []
 								},
