@@ -5069,13 +5069,14 @@
 													"\r",
 													"//RETORNO DO RESPONSE\r",
 													"pm.test(\"Exibe a msg de alerta\", function () {\r",
-													"    pm.expect(pm.response.text()).to.include(\"id deve ter exatamente 16 caracteres alfanuméricos\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"Produto não encontrado\");\r",
 													"});\r",
 													"\r",
 													"// Validate response body structure\r",
 													"pm.test(\"Response body has expected structure\", function () {\r",
 													"    const response = pm.response.json();\r",
-													"    pm.expect(response).to.have.all.keys('id');\r",
+													"    pm.expect(response).to.have.all.keys('message');\r",
+													"    pm.expect(response.message).to.be.a('string');\r",
 													"});\r",
 													"\r",
 													"// Check content type of the response\r",
@@ -5136,7 +5137,34 @@
 							"id": "25433950-0263-4b8c-b1ec-a4463d184284"
 						}
 					],
-					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b"
+					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b",
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2240ef85-f17c-4a54-8164-0854a660b1fd",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e0a201c-c617-4cee-8292-115777a21f5c",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
 					"name": "Excluir",
@@ -5152,16 +5180,13 @@
 			"id": "82605781-27a2-4341-a8de-a561aa68681a",
 			"description": "**Swagger**: [https://serverest.dev/#/Produtos](https://serverest.dev/#/Produtos)\n\n**Requisição**: GET / POST / DELETE / PUT\n\n**Descrição**: Consulte produtos cadastrados ou, como administrador, gerencie os produtos da loja.",
 			"auth": {
-				"type": "bearer",
-				"bearer": {
-					"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhMDEuY29tIiwicGFzc3dvcmQiOiJ0ZXN0ZXFhMTIzNCIsImlhdCI6MTc1Njc3MDg0MSwiZXhwIjoxNzU2NzcxNDQxfQ.N8pE8G-IHbuOVUzHKDb-uoor6Oc5M5chMrmvUH43AYU"
-				}
+				"type": "noauth"
 			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "04b2af3f-eb93-439b-9e5b-a469ae607c02",
+						"id": "fc962024-9476-45a2-aa56-8e48dcaf503d",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -5172,7 +5197,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1349933d-4e77-4ea2-8a52-e5fdea3c6aa1",
+						"id": "fdded6c2-826e-42d6-a10c-0e53cfaf54d8",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
