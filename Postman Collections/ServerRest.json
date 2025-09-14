@@ -8542,7 +8542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"BeeJh5lz3k6kSIzA\",\r\n            \"quantidade\": 1\r\n        },\r\n        {\r\n            \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"BeeJh5547lz3k6kSIzA\",\r\n            \"quantidade\": 1\r\n        },\r\n        {\r\n            \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
