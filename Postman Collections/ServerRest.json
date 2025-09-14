@@ -5265,9 +5265,20 @@
 													"    pm.response.to.have.status(\"OK\");\r",
 													"});\r",
 													"\r",
-													"// Test for 'quantidade' being a number\r",
-													"pm.test(\"'quantidade' is a number\", function () {\r",
-													"    pm.expect(response.quantidade).to.be.a('integer');\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Body matches string\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"nome\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"preco\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"descricao\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"quantidade\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 													"});\r",
 													""
 												],
@@ -5277,6 +5288,63 @@
 										}
 									],
 									"id": "223092f4-359f-410b-95b7-fc9b0d8550d7",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenAdmin}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
+									},
+									"response": []
+								},
+								{
+									"name": "[CT004]Buscar produto por nome do produto",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f212879a-2446-4311-b1f0-451f762348bd",
+												"exec": [
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Status code retorna 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Body matches string\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"nome\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"preco\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"descricao\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"quantidade\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "ea7d168f-21f6-4989-8c57-e393c151e630",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
