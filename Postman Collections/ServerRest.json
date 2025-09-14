@@ -6858,7 +6858,7 @@
 													"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 													"let response = pm.response.json();\r",
 													"let id = response._id;\r",
-													"pm.globals.set(\"id_user_Adm\", id);\r",
+													"pm.globals.set(\"id_user_nAdm\", id);\r",
 													"\r",
 													"\r",
 													"//===========================================\r",
@@ -6872,10 +6872,10 @@
 													"let adm = requestBody.administrador;\r",
 													"\r",
 													"// Armazena em variáveis de ambiente\r",
-													"pm.environment.set(\"nome_Adm\", username);\r",
-													"pm.environment.set(\"email_Adm\", email);\r",
-													"pm.environment.set(\"pass_Adm\", password);\r",
-													"pm.environment.set(\"adm_Adm\", adm);\r",
+													"pm.environment.set(\"nome_nAdm\", username);\r",
+													"pm.environment.set(\"email_nAdm\", email);\r",
+													"pm.environment.set(\"pass_nAdm\", password);\r",
+													"pm.environment.set(\"adm_nAdm\", adm);\r",
 													"\r",
 													"// Log no console para conferir\r",
 													"console.log(\"Nome salvo:\", username);\r",
@@ -6934,6 +6934,154 @@
 											}
 										},
 										"url": "{{URL_ServerRest}}/usuarios"
+									},
+									"response": []
+								},
+								{
+									"name": "Logar com usuario Admin Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ed2063fa-c5b7-4393-a541-9323221ca1f5",
+												"exec": [
+													"// Converte o response em JSON\r",
+													"let response = pm.response.json();\r",
+													"\r",
+													"// Supondo que o token venha como \"Bearer xxxxxxx\"\r",
+													"let rawToken = response.authorization;\r",
+													"\r",
+													"// Remove o prefixo \"Bearer \" se existir\r",
+													"let token = rawToken ? rawToken.replace(/^Bearer\\s+/i, '') : null;\r",
+													"\r",
+													"// Salva apenas o token limpo em variável de ambiente\r",
+													"if (token) {\r",
+													"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
+													"    console.log(\"Token capturado (sem Bearer):\", token);\r",
+													"} else {\r",
+													"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
+													"}\r",
+													"//=========================================\r",
+													"\r",
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Retorna o Status Code 200 Bad Request\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"\r",
+													"//RETORNO DO RESPONSE\r",
+													"pm.test(\"Exibe a msg de alerta\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"Login realizado com sucesso\")\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "17cf9db4-f8c3-47c8-9700-950b466eb488",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "name",
+												"value": "Authorization",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"{{email_nAdm}}\",\r\n    \"password\": \"{{pass_nAdm}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ServerRest}}/login?Name=Authorization ",
+											"host": [
+												"{{URL_ServerRest}}"
+											],
+											"path": [
+												"login"
+											],
+											"query": [
+												{
+													"key": "Name",
+													"value": "Authorization "
+												},
+												{
+													"key": "In",
+													"value": "header",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[CT007]Excluir produto por ID Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f212879a-2446-4311-b1f0-451f762348bd",
+												"exec": [
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Status code retorna 405\", function () {\r",
+													"    pm.response.to.have.status(405);\r",
+													"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"// Validate response body structure\r",
+													"pm.test(\"Response body has expected structure\", function () {\r",
+													"    const response = pm.response.json();\r",
+													"    pm.expect(response).to.have.all.keys('message');\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Body matches string\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "fee65372-c13c-4233-8c7f-dce72d3946d1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenAdmin}}"
+											}
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
 									},
 									"response": []
 								}
