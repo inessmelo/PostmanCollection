@@ -7954,7 +7954,7 @@
 											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 											"let response = pm.response.json();\r",
 											"let id = response._id;\r",
-											"pm.globals.set(\"id_user_nAdm\", id);\r",
+											"pm.globals.set(\"id_user_Adm\", id);\r",
 											"\r",
 											"\r",
 											"//===========================================\r",
@@ -7968,10 +7968,10 @@
 											"let adm = requestBody.administrador;\r",
 											"\r",
 											"// Armazena em variáveis de ambiente\r",
-											"pm.environment.set(\"nome_nAdm\", username);\r",
-											"pm.environment.set(\"email_nAdm\", email);\r",
-											"pm.environment.set(\"pass_nAdm\", password);\r",
-											"pm.environment.set(\"adm_nAdm\", adm);\r",
+											"pm.environment.set(\"nome_Adm\", username);\r",
+											"pm.environment.set(\"email_Adm\", email);\r",
+											"pm.environment.set(\"pass_Adm\", password);\r",
+											"pm.environment.set(\"adm_Adm\", adm);\r",
 											"\r",
 											"// Log no console para conferir\r",
 											"console.log(\"Nome salvo:\", username);\r",
@@ -8019,7 +8019,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"false\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha_gerada}}\",\r\n    \"administrador\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8031,7 +8031,7 @@
 							"response": []
 						},
 						{
-							"name": "Logar com usuario não Admin Copy",
+							"name": "Logar com usuario Admin",
 							"event": [
 								{
 									"listen": "test",
@@ -8090,7 +8090,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"{{email_nAdm}}\",\r\n    \"password\": \"{{pass_nAdm}}\"\r\n}",
+									"raw": "{\r\n    \"email\": \"{{email_Adm}}\",\r\n    \"password\": \"{{pass_Adm}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
