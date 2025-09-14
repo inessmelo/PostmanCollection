@@ -8041,7 +8041,7 @@
 											"\r",
 											"// Salva apenas o token limpo em variável de ambiente\r",
 											"if (token) {\r",
-											"    pm.globals.set(\"authTokenNaoAdmin\", token);\r",
+											"    pm.globals.set(\"authTokenAdmin\", token);\r",
 											"    console.log(\"Token capturado (sem Bearer):\", token);\r",
 											"} else {\r",
 											"    console.warn(\"⚠️ Nenhum token encontrado no response.\");\r",
@@ -8123,7 +8123,7 @@
 											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
 											"let response = pm.response.json();\r",
 											"let id = response._id;\r",
-											"pm.globals.set(\"id_prod\", id);\r",
+											"pm.globals.set(\"id_prod1\", id);\r",
 											"\r",
 											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
 											"let requestBody = JSON.parse(pm.request.body.raw);\r",
@@ -8135,10 +8135,10 @@
 											"let qde = requestBody.quantidade;\r",
 											"\r",
 											"// Armazena em variáveis de ambiente\r",
-											"pm.environment.set(\"name_prod\", product);\r",
-											"pm.environment.set(\"price_prod\", price);\r",
-											"pm.environment.set(\"desc_prod\", description);\r",
-											"pm.environment.set(\"qde_prod\", qde);\r",
+											"pm.environment.set(\"name_prod1\", product);\r",
+											"pm.environment.set(\"price_prod1\", price);\r",
+											"pm.environment.set(\"desc_prod1\", description);\r",
+											"pm.environment.set(\"qde_prod1\", qde);\r",
 											"\r",
 											"// Log no console para conferir\r",
 											"console.log(\"Produto salvo:\", product);\r",
@@ -8198,17 +8198,108 @@
 							"response": []
 						},
 						{
+							"name": "Cadastrar outro produto",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3b675d4-bcc6-4c32-a01d-225d310ddcd1",
+										"exec": [
+											"//SANVANDO O RETORNO DA REQUISIÇÃO\r",
+											"let response = pm.response.json();\r",
+											"let id = response._id;\r",
+											"pm.globals.set(\"id_prod2\", id);\r",
+											"\r",
+											"//SALVANDO O REQUEST BODY DA REQUISIÇÃO\r",
+											"let requestBody = JSON.parse(pm.request.body.raw);\r",
+											"\r",
+											"// Pegar campos específicos do body\r",
+											"let product = requestBody.nome;\r",
+											"let price = requestBody.preco;\r",
+											"let description = requestBody.descricao;\r",
+											"let qde = requestBody.quantidade;\r",
+											"\r",
+											"// Armazena em variáveis de ambiente\r",
+											"pm.environment.set(\"name_prod2\", product);\r",
+											"pm.environment.set(\"price_prod2\", price);\r",
+											"pm.environment.set(\"desc_prod2\", description);\r",
+											"pm.environment.set(\"qde_prod2\", qde);\r",
+											"\r",
+											"// Log no console para conferir\r",
+											"console.log(\"Produto salvo:\", product);\r",
+											"console.log(\"Preço salvo:\", price);\r",
+											"console.log(\"Descrição salvo:\", description);\r",
+											"console.log(\"Qde salvo\", qde);\r",
+											"\r",
+											"//=========================\r",
+											"\r",
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.have.status(\"Created\");\r",
+											"});\r",
+											"\r",
+											"//RETORNO DO RESPONSE\r",
+											"pm.test(\"Exibe a msg de alerta\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+											"});\r",
+											"\r",
+											"// Check content type of the response\r",
+											"pm.test(\"Response should have Content-Type as application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "c26d9e4f-289a-48cb-be23-eb1b21fc51f9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenAdmin}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{$randomProductName}}\",\r\n    \"preco\": \"{{qde_gerada}}\",\r\n    \"descricao\": \"{{$randomProductMaterial}}\",\r\n    \"quantidade\": \"{{qde_gerada}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_ServerRest}}/produtos"
+							},
+							"response": []
+						},
+						{
 							"name": "[CT001]Cadastrar produto com campos em branco",
 							"id": "6d2de81f-e2d3-4d6b-8a98-993483c87b80",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenAdmin}}"
+									}
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"BeeJh5lz3k6kSIzA\",\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"{{id_prod1}}\",\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": \"{{id_prod2}}\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
