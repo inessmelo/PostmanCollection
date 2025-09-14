@@ -5405,7 +5405,7 @@
 									"response": []
 								},
 								{
-									"name": "[CT005]Buscar produto por preco",
+									"name": "[CT005]Buscar produto por preço",
 									"event": [
 										{
 											"listen": "test",
@@ -5591,6 +5591,262 @@
 												{
 													"key": "descricao",
 													"value": "{{desc_prod}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[CT007]Buscar produto por quantiade",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f212879a-2446-4311-b1f0-451f762348bd",
+												"exec": [
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Status code retorna 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Body matches string\", function () {\r",
+													"    pm.expect(pm.response.text()).to.include(\"nome\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"preco\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"descricao\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"quantidade\");\r",
+													"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
+													"});\r",
+													"\r",
+													"// Validate response structure\r",
+													"const response = pm.response.json();\r",
+													"pm.test(\"Response has 'quantidade' and 'usuarios'\", function () {\r",
+													"    pm.expect(response).to.have.property(\"quantidade\");\r",
+													"    pm.expect(response).to.have.property(\"produtos\");\r",
+													"});\r",
+													"\r",
+													"// Validate 'quantidade' is a number\r",
+													"pm.test(\"'quantidade' is a number\", function () {\r",
+													"    pm.expect(response.quantidade).to.be.a('number');\r",
+													"});\r",
+													"\r",
+													"// Validate 'usuarios' is an array\r",
+													"pm.test(\"'produtos' is an array\", function () {\r",
+													"    pm.expect(response.produtos).to.be.an('array');\r",
+													"});\r",
+													"\r",
+													"// Validate each user object in 'usuarios' array\r",
+													"response.produtos.forEach(user => {\r",
+													"    pm.test(\"User has required properties\", function () {\r",
+													"        pm.expect(user).to.have.all.keys(\"nome\", \"preco\", \"descricao\", \"quantidade\", \"_id\");\r",
+													"    });\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "f5c440ec-bc29-4159-b8eb-33af4c5cf3c4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenAdmin}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{URL_ServerRest}}/produtos/?quantidade={{qde_prod}}",
+											"host": [
+												"{{URL_ServerRest}}"
+											],
+											"path": [
+												"produtos",
+												""
+											],
+											"query": [
+												{
+													"key": "quantidade",
+													"value": "{{qde_prod}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[CT008]Buscar produto por nome nao cadastrado",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f212879a-2446-4311-b1f0-451f762348bd",
+												"exec": [
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Status code retorna 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"// Validate response structure\r",
+													"const response = pm.response.json();\r",
+													"pm.test(\"Response has 'quantidade' and 'usuarios'\", function () {\r",
+													"    pm.expect(response).to.have.property(\"quantidade\");\r",
+													"    pm.expect(response).to.have.property(\"produtos\");\r",
+													"});\r",
+													"\r",
+													"// Validate 'quantidade' is a number\r",
+													"pm.test(\"'quantidade' is a number\", function () {\r",
+													"    pm.expect(response.quantidade).to.be.a('number');\r",
+													"});\r",
+													"\r",
+													"// Validate 'usuarios' is an array\r",
+													"pm.test(\"'produtos' is an array\", function () {\r",
+													"    pm.expect(response.produtos).to.be.an('array');\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "0ba392ca-2369-4e0c-bb27-f1daca6a5d7f",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenAdmin}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{URL_ServerRest}}/produtos/?nome=aaaaaaaa",
+											"host": [
+												"{{URL_ServerRest}}"
+											],
+											"path": [
+												"produtos",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "aaaaaaaa"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[CT009]Buscar produto por preço nao cadastrado",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f212879a-2446-4311-b1f0-451f762348bd",
+												"exec": [
+													"//RETORNO DO CODIGO E O STATUS\r",
+													"pm.test(\"Status code retorna 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    pm.response.to.have.status(\"OK\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"// Validate response structure\r",
+													"const response = pm.response.json();\r",
+													"pm.test(\"Response has 'quantidade' and 'usuarios'\", function () {\r",
+													"    pm.expect(response).to.have.property(\"quantidade\");\r",
+													"    pm.expect(response).to.have.property(\"produtos\");\r",
+													"});\r",
+													"\r",
+													"// Validate 'quantidade' is a number\r",
+													"pm.test(\"'quantidade' is a number\", function () {\r",
+													"    pm.expect(response.quantidade).to.be.a('number');\r",
+													"});\r",
+													"\r",
+													"// Validate 'usuarios' is an array\r",
+													"pm.test(\"'produtos' is an array\", function () {\r",
+													"    pm.expect(response.produtos).to.be.an('array');\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "cc186bf3-d7db-4c04-ac23-7247cebff887",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{authTokenAdmin}}"
+											}
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{URL_ServerRest}}/produtos/?preco=000000",
+											"host": [
+												"{{URL_ServerRest}}"
+											],
+											"path": [
+												"produtos",
+												""
+											],
+											"query": [
+												{
+													"key": "preco",
+													"value": "000000"
 												}
 											]
 										}
