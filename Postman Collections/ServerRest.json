@@ -6938,7 +6938,7 @@
 									"response": []
 								},
 								{
-									"name": "Logar com usuario Admin Copy",
+									"name": "Logar com usuario Admin",
 									"event": [
 										{
 											"listen": "test",
@@ -7028,7 +7028,7 @@
 									"response": []
 								},
 								{
-									"name": "Cadastrar um produto Copy",
+									"name": "Cadastrar um produto",
 									"event": [
 										{
 											"listen": "test",
@@ -7113,7 +7113,7 @@
 									"response": []
 								},
 								{
-									"name": "[CT007]Excluir produto por ID Copy",
+									"name": "[CT007]Excluir produto por ID",
 									"event": [
 										{
 											"listen": "test",
