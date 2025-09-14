@@ -8317,7 +8317,7 @@
 											"pm.test(\"Response body has a message property\", function () {\r",
 											"    const response = pm.response.json();\r",
 											"    pm.expect(response).to.have.property(\"produtos\");\r",
-											"    pm.expect(response.message).to.be.a(\"string\");\r",
+											"    pm.expect(response.produtos).to.be.a(\"string\");\r",
 											"});\r",
 											""
 										],
@@ -8542,7 +8542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"sadadf5\",\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": \"54dsderf\",\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": \"BeeJh5lz3k6kSIzA\",\r\n            \"quantidade\": 1\r\n        },\r\n        {\r\n            \"idProduto\": \"YaeJ455lz3k6kSIzA\",\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
