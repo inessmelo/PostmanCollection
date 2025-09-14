@@ -6748,6 +6748,10 @@
 											"pm.test(\"Response body has expected structure\", function () {\r",
 											"    const response = pm.response.json();\r",
 											"    pm.expect(response).to.have.all.keys('message');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -6772,22 +6776,65 @@
 									"mode": "raw",
 									"raw": ""
 								},
-								"url": {
-									"raw": "{{URL_ServerRest}}/produtos/?_id={{id_prod}}",
-									"host": [
-										"{{URL_ServerRest}}"
-									],
-									"path": [
-										"produtos",
-										""
-									],
-									"query": [
-										{
-											"key": "_id",
-											"value": "{{id_prod}}"
-										}
-									]
+								"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Excluir produto por ID Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f212879a-2446-4311-b1f0-451f762348bd",
+										"exec": [
+											"//RETORNO DO CODIGO E O STATUS\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											"\r",
+											"// Validate response body structure\r",
+											"pm.test(\"Response body has expected structure\", function () {\r",
+											"    const response = pm.response.json();\r",
+											"    pm.expect(response).to.have.all.keys('message');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Registro excluído com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
+							],
+							"id": "f73fa096-74f3-4d5b-a663-00e55d9e1ddc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{authTokenAdmin}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{URL_ServerRest}}/produtos/{{id_prod}}"
 							},
 							"response": []
 						}
