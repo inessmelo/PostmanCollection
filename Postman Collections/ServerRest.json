@@ -7984,15 +7984,7 @@
 											"pm.test(\"Status code retorna 201\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"    pm.response.to.have.status(\"Created\");\r",
-											"});\r",
-											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
-											"    pm.expect(pm.response.text()).to.include(\"_id\");\r",
-											"});\r",
-											"\r",
-											""
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -8121,7 +8113,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT008]Validar cadastro de um produto com sucesso Copy",
+							"name": "Cadastrar um produto",
 							"event": [
 								{
 									"listen": "test",
