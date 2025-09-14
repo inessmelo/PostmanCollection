@@ -5134,7 +5134,34 @@
 									"response": []
 								}
 							],
-							"id": "25433950-0263-4b8c-b1ec-a4463d184284"
+							"id": "25433950-0263-4b8c-b1ec-a4463d184284",
+							"auth": {
+								"type": "noauth"
+							},
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "90ef6281-f424-43c2-b8e3-0ecb7063d24c",
+										"type": "text/javascript",
+										"packages": {},
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "e9d9e063-e3a4-48a4-9b60-d5d4b1c687a5",
+										"type": "text/javascript",
+										"packages": {},
+										"exec": [
+											""
+										]
+									}
+								}
+							]
 						}
 					],
 					"id": "59477c8b-0572-4a9f-beaf-4edf3ea0898b",
