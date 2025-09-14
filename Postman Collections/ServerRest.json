@@ -8004,6 +8004,7 @@
 				}
 			],
 			"id": "f2de5741-ccdc-46d1-bbcf-aeb8e1000afd",
+			"description": "URL:[https://serverest.dev/#/Carrinhos/post_carrinhos](https://serverest.dev/#/Carrinhos/post_carrinhos)\n\nRequisições: POST, GET e DELETE\n\nInformações: O carrinho é vinculado ao usuário do token enviado no header `Authorization`, sendo possível cadastrar apenas 1 carrinho por usuário. Ao cadastrar carrinho com sucesso é feita a redução da quantidade no cadastro de cada produto inserido no carrinho.",
 			"auth": {
 				"type": "bearer",
 				"bearer": {
