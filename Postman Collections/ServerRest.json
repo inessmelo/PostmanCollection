@@ -7509,7 +7509,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT001]Editar produto sem ID",
+							"name": "[CT002]Editar produto sem ID",
 							"event": [
 								{
 									"listen": "test",
@@ -7517,14 +7517,9 @@
 										"id": "e0c5817d-46ae-4546-8f7b-5c1e0437fa73",
 										"exec": [
 											"//RETORNO DO CODIGO E O STATUS\r",
-											"pm.test(\"Status code retorna 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"    pm.response.to.have.status(\"OK\");\r",
-											"});\r",
-											"\r",
-											"//RETORNO DO RESPONSE\r",
-											"pm.test(\"Exibe a msg de alerta\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+											"pm.test(\"Status code retorna 405\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"    pm.response.to.have.status(\"Method Not Allowed\");\r",
 											"});\r",
 											"\r",
 											"// Check response time\r",
@@ -7573,7 +7568,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT001]Editar nome do produto",
+							"name": "[CT003]Editar nome do produto",
 							"event": [
 								{
 									"listen": "test",
@@ -7628,7 +7623,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"{{$randomFullName}}\",\r\n    \"preco\": \"{{$randomInt}}\",\r\n    \"descricao\": \"{{$randomAdjective}}\",\r\n    \"quantidade\": \"{{qde_gerada}}\"\r\n}",
+									"raw": "{\r\n    \"nome\": \"{{$randomFullName}}\",\r\n    \"preco\": \"{{price_prod}}\",\r\n    \"descricao\": \"{{desc_prod}}\",\r\n    \"quantidade\": \"{{qde_prod}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7640,7 +7635,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT001]Editar nome por ID Copy",
+							"name": "[CT004]Editar preço do produto",
 							"event": [
 								{
 									"listen": "test",
