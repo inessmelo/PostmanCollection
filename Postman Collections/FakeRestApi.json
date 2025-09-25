@@ -77,7 +77,7 @@
 										}
 									}
 								},
-								"url": "{{URL_Fake_Rest_API}}/Authors"
+								"url": "{{baseURL}}/Activities"
 							},
 							"response": []
 						},
