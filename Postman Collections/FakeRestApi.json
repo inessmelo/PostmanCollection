@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "3c8b85b8-c791-4214-a458-338b0b59c66e",
+		"name": "Fake Rest API Web",
+		"description": "Swagger: [https://fakerestapi.azurewebsites.net/index.html](https://fakerestapi.azurewebsites.net/index.html)\n\nAPI para criação de Livors e Autores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Criar atividade",
+					"item": [
+						{
+							"name": "Cadastrar Atividade",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											"pm.environment.set(\"id\", {{}} );\r",
+											"pm.environment.set(\"email\", \"bc@teste.com\");\r",
+											"pm.environment.set(\"sexo\", \"female\");\r",
+											"pm.environment.set(\"status\", \"active\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "f0648e61-3718-4658-9ee8-91556d7bc1f5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 101,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Activities"
+							},
+							"response": []
+						}
+					],
+					"id": "cbe199ca-5d2a-4ba9-83ea-a2f5773a98b5"
+				},
+				{
+					"name": "Buscar atividade",
+					"item": [
+						{
+							"name": "Buscar Atividade",
+							"id": "c9206d2e-7911-4c9f-81ac-2d127a43e8b6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Authors"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Atividade por ID",
+							"id": "f7cd5cae-f422-438f-b4f5-aefa5037f18f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_Fake_Rest_API}}/Activities/?id=100",
+									"host": [
+										"{{URL_Fake_Rest_API}}"
+									],
+									"path": [
+										"Activities",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "ede7a609-3b4f-4c5d-8e95-e1727732b383"
+				},
+				{
+					"name": "Atualizar atividade",
+					"item": [],
+					"id": "0a92d32e-2f13-440b-ba05-88c750045f55"
+				},
+				{
+					"name": "Excluir atividade",
+					"item": [],
+					"id": "8c0d806f-c27b-41a2-9e19-cb7378021ea3"
+				}
+			],
+			"id": "a0eefc3a-dbd9-4f4e-a43c-9ada33aa44d6"
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Criar autor",
+					"item": [
+						{
+							"name": "Cadastrar Atividade",
+							"id": "c45a0857-a6b1-488d-98c9-2cdc8245395e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Activities"
+							},
+							"response": []
+						}
+					],
+					"id": "8cae7fb5-7f2b-4374-b5c4-0c8a8b0fff37"
+				},
+				{
+					"name": "Buscar autor",
+					"item": [
+						{
+							"name": "Buscar Atividade",
+							"id": "3a4f165f-3fb5-4e05-bc53-06a5aae7b2a1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Authors"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Atividade por ID",
+							"id": "db79d366-4cff-4eed-af82-6840f4e41cd1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{URL_Fake_Rest_API}}/Activities/1"
+							},
+							"response": []
+						}
+					],
+					"id": "31862fa1-877f-40a4-a3f8-13a1ad70607c"
+				},
+				{
+					"name": "Atualizar autor",
+					"item": [],
+					"id": "b3fb9f64-9370-4ace-96ee-ed87b396b2b5"
+				},
+				{
+					"name": "Excluir autor",
+					"item": [],
+					"id": "ff9c86f2-a518-4796-ba6d-d38f5ac74385"
+				}
+			],
+			"id": "989b59f3-3e61-476e-ac0d-1c22170b9d27"
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Cadastrar livros",
+					"item": [
+						{
+							"name": "Cadastrar Atividade",
+							"id": "d540c115-1197-4c0e-bf68-dce0d056c09f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Activities"
+							},
+							"response": []
+						}
+					],
+					"id": "838d9c11-f5d0-4f3f-9bfc-d72df65767d1"
+				},
+				{
+					"name": "Buscar livros",
+					"item": [
+						{
+							"name": "Buscar Atividade",
+							"id": "300a0290-5daf-471d-a9d3-bd7f9c5a85d6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Authors"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Atividade por ID",
+							"id": "019a4d17-e84a-40d0-83db-3b40c5db37b2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{URL_Fake_Rest_API}}/Activities/1"
+							},
+							"response": []
+						}
+					],
+					"id": "ca6f3371-bc04-4404-ab43-4897b01fed22"
+				},
+				{
+					"name": "Atualizar livros",
+					"item": [],
+					"id": "dbc189fa-fc72-4b8e-878f-347a77736803"
+				},
+				{
+					"name": "Excluir livros",
+					"item": [],
+					"id": "3b7ce90c-6c31-4e26-9af5-d8cbb227aa7a"
+				}
+			],
+			"id": "9532dbaf-eb69-4f51-8dfc-34e6133ae7be"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Cadastrar usuario",
+					"item": [
+						{
+							"name": "Cadastrar Atividade",
+							"id": "99d94362-fcf8-4ffa-a327-978d877caaca",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Activities"
+							},
+							"response": []
+						}
+					],
+					"id": "9e92d72b-fbc9-4e76-8140-232a3928db7d"
+				},
+				{
+					"name": "Buscar usuario",
+					"item": [
+						{
+							"name": "Buscar Atividade",
+							"id": "d215f7f3-5559-47b7-8046-81a7a19b1e0f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Authors"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Atividade por ID",
+							"id": "31cc2e63-1543-45ad-b0de-ee09762d3333",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{URL_Fake_Rest_API}}/Activities/1"
+							},
+							"response": []
+						}
+					],
+					"id": "1df45ac5-2c7c-434f-9418-ae1d963cd40f"
+				},
+				{
+					"name": "Atualizar usuario",
+					"item": [],
+					"id": "aeee9acc-f7f2-4e22-9f7e-57f945e75035"
+				},
+				{
+					"name": "Excluir usuario",
+					"item": [],
+					"id": "7fe80523-199a-4b80-9f71-27d646dc06b9"
+				}
+			],
+			"id": "aedb4c52-8990-43ad-b73e-b713bd119742"
+		},
+		{
+			"name": "CoverPhotos",
+			"item": [
+				{
+					"name": "Cadastrar foto da capa",
+					"item": [
+						{
+							"name": "Cadastrar Atividade",
+							"id": "63acb103-2bc5-48c5-b802-d4723e0a889c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Activities"
+							},
+							"response": []
+						}
+					],
+					"id": "5abb270c-f536-4f91-9017-a06a8e21bfdc"
+				},
+				{
+					"name": "Buscar foto da capa",
+					"item": [
+						{
+							"name": "Buscar Atividade",
+							"id": "01c8fead-5b4e-4cf1-8033-fb7f3cb1aa58",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL_Fake_Rest_API}}/Authors"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Atividade por ID",
+							"id": "d4ce9683-ce54-4d03-a845-f148d48983e7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{URL_Fake_Rest_API}}/Activities/1"
+							},
+							"response": []
+						}
+					],
+					"id": "5fd1128b-783f-4cd0-8baf-d8ecb068f964"
+				},
+				{
+					"name": "Atualizar foto da capa",
+					"item": [],
+					"id": "8b3c74ff-54ee-4169-99d4-725cf4c2cb71"
+				},
+				{
+					"name": "Excluir foto da capa",
+					"item": [],
+					"id": "f30a5064-5bbc-44c3-bfbf-96bce24990e8"
+				}
+			],
+			"id": "805c901e-5640-4c43-b3b2-2cdb2d164554"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "64bdf963-333e-4950-89a1-2978185f1440",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ef314cd0-7f5a-4e8c-9634-18bc346fa03e",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
