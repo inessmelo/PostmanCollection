@@ -20,10 +20,7 @@
 									"script": {
 										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
 										"exec": [
-											"pm.environment.set(\"id\", {{}} );\r",
-											"pm.environment.set(\"email\", \"bc@teste.com\");\r",
-											"pm.environment.set(\"sexo\", \"female\");\r",
-											"pm.environment.set(\"status\", \"active\");"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -36,7 +33,7 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -731,20 +728,38 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "64bdf963-333e-4950-89a1-2978185f1440",
+				"id": "b1a90bbe-ce62-4051-96c2-59bd08551eb3",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
-					""
+					"// Função genérica para gerar data no formato AAAA-MM-DD\r",
+					"function gerarData(offsetDias = 0) {\r",
+					"    let hoje = new Date();\r",
+					"    hoje.setDate(hoje.getDate() + offsetDias);                              // +dias para futuro, -dias para passado\r",
+					"    let ano = hoje.getFullYear();\r",
+					"    let mes = String(hoje.getMonth() + 1).padStart(2, '0');\r",
+					"    let dia = String(hoje.getDate()).padStart(2, '0');\r",
+					"    return `${ano}-${mes}-${dia}T00:56:52.794Z`;\r",
+					"}\r",
+					"\r",
+					"let dataAtual = gerarData(0);                                               // Data atual\r",
+					"let dataFutura = gerarData(7);                                              // Data futura (ex: +7 dias)\r",
+					"let dataHistorica = gerarData(-7);                                          // Data passada (ex: -7 dias)\r",
+					"\r",
+					"pm.environment.set(\"dataAtual\", dataAtual);                                 // Salva na variável local\r",
+					"pm.environment.set(\"dataFutura\", dataFutura);\r",
+					"pm.environment.set(\"dataHistorica\", dataHistorica);"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "ef314cd0-7f5a-4e8c-9634-18bc346fa03e",
+				"id": "d7acf2b4-2e19-4a34-9754-64342b3c831a",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
 					""
 				]
