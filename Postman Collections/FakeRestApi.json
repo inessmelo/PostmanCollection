@@ -57,7 +57,84 @@
 					"name": "Buscar atividade",
 					"item": [
 						{
-							"name": "Buscar Atividade",
+							"name": "[CT001]Buscar por todas as atividades",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "506e8f08-11a5-4e1f-bc9d-d9152c74ba6c",
+										"exec": [
+											"pm.globals.unset(\"schema\")\r",
+											"pm.globals.set(\"schema\", {\r",
+											"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+											"  \"type\": \"array\",\r",
+											"  \"items\": [\r",
+											"    {\r",
+											"      \"type\": \"object\",\r",
+											"      \"properties\": {\r",
+											"        \"id\": {\r",
+											"          \"type\": \"integer\"\r",
+											"        },\r",
+											"        \"title\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"dueDate\": {\r",
+											"          \"type\": \"string\"\r",
+											"        },\r",
+											"        \"completed\": {\r",
+											"          \"type\": \"boolean\"\r",
+											"        }\r",
+											"      },\r",
+											"      \"required\": [\r",
+											"        \"id\",\r",
+											"        \"title\",\r",
+											"        \"dueDate\",\r",
+											"        \"completed\"\r",
+											"      ]\r",
+											"    }\r",
+											"  ]\r",
+											"})"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "74bf1fd7-f050-4761-a17f-546b279b7f2b",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"Validar o retorno do status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('array');\r",
+											"})\r",
+											"//=======================================================================\r",
+											"//Validar o contrato\r",
+											"const Ajv = require(\"ajv\")\r",
+											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
+											"\r",
+											"pm.test('Validar o schema do contrato', function () {\r",
+											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "c9206d2e-7911-4c9f-81ac-2d127a43e8b6",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -82,7 +159,7 @@
 							"response": []
 						},
 						{
-							"name": "Buscar Atividade por ID",
+							"name": "[CT002]Buscar atividade por ID",
 							"id": "f7cd5cae-f422-438f-b4f5-aefa5037f18f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
