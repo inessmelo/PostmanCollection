@@ -167,7 +167,30 @@
 										"id": "5582f804-1c82-403d-8057-b05f9baa0b81",
 										"exec": [
 											"pm.globals.unset(\"schema\")\r",
-											"pm.globals.set"
+											"pm.globals.set(\"schema\", {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"dueDate\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"completed\": {\r",
+											"      \"type\": \"boolean\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"dueDate\",\r",
+											"    \"completed\"\r",
+											"  ]\r",
+											"}\r",
+											")"
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -192,7 +215,7 @@
 											"//=======================================================================\r",
 											"//Validar se o retorno é um array de objetos\r",
 											"pm.test(\"Validiar se retorno é um array de objetos\", function () {\r",
-											"    pm.expect(pm.response.json()).to.be.an('array');\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
 											"})\r",
 											"//=======================================================================\r",
 											"//Validar o contrato\r",
@@ -219,22 +242,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "{{baseURL}}{{version}}/Activities?id=4",
-									"host": [
-										"{{baseURL}}{{version}}"
-									],
-									"path": [
-										"Activities"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "4",
-											"type": "text"
-										}
-									]
-								}
+								"url": "{{baseURL}}{{version}}/Activities/4"
 							},
 							"response": []
 						}
