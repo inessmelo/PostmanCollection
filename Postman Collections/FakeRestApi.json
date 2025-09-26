@@ -127,6 +127,13 @@
 											"\r",
 											"pm.test('Validar o schema do contrato', function () {\r",
 											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"//Capturar id\r",
+											"pm.test(\"Capturar id\", function () {\r",
+											"    //var id = pm.response.json();\r",
+											"    //console.log(id[1].id);\r",
+											"    pm.environment.set(\"activitiesID\", id[1].id);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -242,7 +249,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{baseURL}}{{version}}/Activities/4"
+								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
 							},
 							"response": []
 						}
