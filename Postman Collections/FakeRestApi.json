@@ -159,7 +159,56 @@
 							"response": []
 						},
 						{
-							"name": "[CT002]Buscar atividade por ID",
+							"name": "[CT002]Buscar atividade por ID existente",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5582f804-1c82-403d-8057-b05f9baa0b81",
+										"exec": [
+											"pm.globals.unset(\"schema\")\r",
+											"pm.globals.set"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "adc29617-7d5e-4bbe-a05f-971cd77a9c61",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"Validar o retorno do status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('array');\r",
+											"})\r",
+											"//=======================================================================\r",
+											"//Validar o contrato\r",
+											"const Ajv = require(\"ajv\")\r",
+											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
+											"\r",
+											"pm.test('Validar o schema do contrato', function () {\r",
+											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "f7cd5cae-f422-438f-b4f5-aefa5037f18f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -171,18 +220,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL_Fake_Rest_API}}/Activities/?id=100",
+									"raw": "{{baseURL}}{{version}}/Activities?id=4",
 									"host": [
-										"{{URL_Fake_Rest_API}}"
+										"{{baseURL}}{{version}}"
 									],
 									"path": [
-										"Activities",
-										""
+										"Activities"
 									],
 									"query": [
 										{
 											"key": "id",
-											"value": "100"
+											"value": "4",
+											"type": "text"
 										}
 									]
 								}
