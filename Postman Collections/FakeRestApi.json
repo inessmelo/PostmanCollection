@@ -131,9 +131,9 @@
 											"\r",
 											"//Capturar id\r",
 											"pm.test(\"Capturar id\", function () {\r",
-											"    //var id = pm.response.json();\r",
-											"    //console.log(id[0].id);\r",
-											"    pm.environment.set(\"activitiesID\", id[2].id);\r",
+											"    var id = pm.response.json();\r",
+											"    console.log(id[3].id);\r",
+											"    pm.environment.set(\"activitiesID\", id[3].id);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -337,7 +337,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
+								"url": "{{baseURL}}{{version}}/Activities/100"
 							},
 							"response": []
 						}
