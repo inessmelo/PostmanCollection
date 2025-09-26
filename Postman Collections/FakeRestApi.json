@@ -122,48 +122,7 @@
 									"script": {
 										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
 										"exec": [
-											"pm.environment.unset(\"schema\")\r",
-											"pm.environment.set(\"schema\", {\r",
-											"  \"type\": \"object\",\r",
-											"  \"properties\": {\r",
-											"    \"type\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"title\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"status\": {\r",
-											"      \"type\": \"integer\"\r",
-											"    },\r",
-											"    \"traceId\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"errors\": {\r",
-											"      \"type\": \"object\",\r",
-											"      \"properties\": {\r",
-											"        \"$.id\": {\r",
-											"          \"type\": \"array\",\r",
-											"          \"items\": [\r",
-											"            {\r",
-											"              \"type\": \"string\"\r",
-											"            }\r",
-											"          ]\r",
-											"        }\r",
-											"      },\r",
-											"      \"required\": [\r",
-											"        \"$.id\"\r",
-											"      ]\r",
-											"    }\r",
-											"  },\r",
-											"  \"required\": [\r",
-											"    \"type\",\r",
-											"    \"title\",\r",
-											"    \"status\",\r",
-											"    \"traceId\",\r",
-											"    \"errors\"\r",
-											"  ]\r",
-											"}\r",
-											")"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -190,14 +149,6 @@
 											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
 											"    pm.expect(pm.response.json()).to.be.an('object');\r",
 											"})\r",
-											"//=======================================================================\r",
-											"//Validar o contrato\r",
-											"const Ajv = require(\"ajv\")\r",
-											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
-											"\r",
-											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
-											"});\r",
 											""
 										],
 										"type": "text/javascript",
@@ -227,55 +178,14 @@
 							"response": []
 						},
 						{
-							"name": "[CT003]Cadastrar atividade com campos em branco Copy",
+							"name": "[CT003]Cadastrar atividade com campo completed em branco",
 							"event": [
 								{
 									"listen": "prerequest",
 									"script": {
 										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
 										"exec": [
-											"pm.environment.unset(\"schema\")\r",
-											"pm.environment.set(\"schema\", {\r",
-											"  \"type\": \"object\",\r",
-											"  \"properties\": {\r",
-											"    \"type\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"title\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"status\": {\r",
-											"      \"type\": \"integer\"\r",
-											"    },\r",
-											"    \"traceId\": {\r",
-											"      \"type\": \"string\"\r",
-											"    },\r",
-											"    \"errors\": {\r",
-											"      \"type\": \"object\",\r",
-											"      \"properties\": {\r",
-											"        \"$.id\": {\r",
-											"          \"type\": \"array\",\r",
-											"          \"items\": [\r",
-											"            {\r",
-											"              \"type\": \"string\"\r",
-											"            }\r",
-											"          ]\r",
-											"        }\r",
-											"      },\r",
-											"      \"required\": [\r",
-											"        \"$.id\"\r",
-											"      ]\r",
-											"    }\r",
-											"  },\r",
-											"  \"required\": [\r",
-											"    \"type\",\r",
-											"    \"title\",\r",
-											"    \"status\",\r",
-											"    \"traceId\",\r",
-											"    \"errors\"\r",
-											"  ]\r",
-											"}\r",
-											")"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -302,14 +212,6 @@
 											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
 											"    pm.expect(pm.response.json()).to.be.an('object');\r",
 											"})\r",
-											"//=======================================================================\r",
-											"//Validar o contrato\r",
-											"const Ajv = require(\"ajv\")\r",
-											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
-											"\r",
-											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
-											"});\r",
 											""
 										],
 										"type": "text/javascript",
@@ -327,7 +229,135 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": \"\",\r\n  \"title\": \"\",\r\n  \"dueDate\": \"\",\r\n  \"completed\": \"\"\r\n}",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT004]Cadastrar atividade com campo dueDate em branco",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "f54fd280-1298-41c0-939b-17702fa4115c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"\",\r\n  \"completed\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT005]Cadastrar atividade com campo dueDate em branco Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "00d991be-9270-46c3-a5ba-878287e87a68",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"\",\r\n  \"completed\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
