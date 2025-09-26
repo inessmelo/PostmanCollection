@@ -18,11 +18,11 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "809396f0-4d9a-4e37-9bc3-9a8aeef696a6",
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
 										"exec": [
 											"pm.globals.unset(\"schema\")\r",
 											"pm.globals.set(\"schema\", {\r",
-											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+											"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
 											"  \"type\": \"object\",\r",
 											"  \"properties\": {\r",
 											"    \"id\": {\r",
@@ -44,16 +44,18 @@
 											"    \"dueDate\",\r",
 											"    \"completed\"\r",
 											"  ]\r",
-											"})"
+											"}\r",
+											")"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
 									"listen": "test",
 									"script": {
-										"id": "2a8f92d7-112a-49a9-82be-a9ca313d43b4",
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
 										"exec": [
 											"//Validar o retorno do status code\r",
 											"pm.test(\"Validar o retorno do status code 200\", function () {\r",
@@ -80,14 +82,15 @@
 											"});\r",
 											"\r",
 											"//Capturar id\r",
-											"pm.test(\"Capturar id\", function () {\r",
-											"    var id = pm.response.json();\r",
-											"    console.log(id.id);\r",
-											"    pm.environment.set(\"postActivitiesID\", id);\r",
+											"pm.test(\"Validar o ID da resposta\", function () {\r",
+											"    const id = pm.response.json().id;\r",
+											"    console.log(id)\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(id);\r",
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
