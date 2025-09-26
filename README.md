@@ -1,7 +1,7 @@
 # 📌 Postman Collection
 
- - <a href="https://serverest.dev/#/">ServeRest</a>: é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.
- - <a href="">----</a>: é uma API REST gratuita que simula ... estudos de testes de API.
+ - [ServeRest](https://serverest.dev/#/): é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.
+ - [FakeRESTApi.Web V1](https://fakerestapi.azurewebsites.net/index.html): é uma API REST gratuita que simula o cadastro de Livros e Autores para servir de material de estudos de testes de API.
 
 ## 🎯 Propósito do Repositório
 
@@ -35,7 +35,7 @@ Próximos Passos
 
 - Principais ferramentas, linguagens e tipo de teste utilizadas nessa collection:
 - Linguagem: JavaScript
-- Ferramentas: Postman, GitLab , Newman
+- Ferramentas: Postman, GitLab , Newman, JS
 - Tipos de Teste: Teste Funcional, Teste de Performance e Automação
 
 ## 📂 Estrutura do Projeto
@@ -43,16 +43,27 @@ Próximos Passos
 - Postman Collections = Collection do Postman de cada API Rest  
 - README.md = Arquivo de informação sobre o projeto de teste
 - ServeRest = API de cadastro de Usuários, Produtos e inserir produtos no carrinho
-- 
+- Fake Rest API = API ded cadastro de Livros e Usuários
 
 ## ▶️ Como Executar
 
 - Geração de token SSH no GitHub para permitir a automação dos envios dos testes, eliminando a necessidade de executar manualmente comandos Git (opcional).
 - Criação de relatórios detalhados (Status Report) utilizando o Newman via linha de comando, garantindo maior visibilidade e rastreabilidade dos resultados dos testes.
+- Rodar o Newman   ` newman run -h ` e o Report HTML `-r htmlreport`
+
 
 ## 📊 Resultados e Demonstrações
 
->Incluir prints de tela, gifs ou exemplos de saída.
+- Instalando o [Node.JS](https://nodejs.org/pt)) e o NPM vem junto com a instalação Node; 
+- Verifciar via linha de comando no GIT Bash se o Node e o NPMM foram isntalados com `node -v` e `npm -v` ;
+- Instalar o Newman com `npm install -g newman` via linha de comando; 
+- Instalar o Report Newman em HTML com `npm install -g newman-reporter-htmlextra` via linha de comando; 
+- Exportar toda a Collection e toda a Environment e add em um pasta;
+- Rodar o GIT Bash dentro dessa pasta com a seguinte linha de comando `run newman NomeDaCollection.postman_collection.json -e NomeDaEnvironment.postman_environment.json -r htmlextra
+` ;
+  
+<img width="1049" height="805" alt="image" src="https://github.com/user-attachments/assets/eccf8acd-9717-4d5d-a3fb-e0caa2d95dc7" />
+
 
 
 ## 🚀 Aprendizados e Contribuições
@@ -66,7 +77,6 @@ Próximos Passos
 
 ## 📌 Próximos Passos
 
->listar melhorias futuras 
 > - Adicionar testes de regressão
 > - Criar relatórios automáticos de QA
 > - Expandir documentação
