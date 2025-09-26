@@ -113,6 +113,108 @@
 								"url": "{{baseURL}}{{version}}/Activities"
 							},
 							"response": []
+						},
+						{
+							"name": "[CT001]Cadastrar atividade com sucesso Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
+											"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"dueDate\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"completed\": {\r",
+											"      \"type\": \"boolean\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"dueDate\",\r",
+											"    \"completed\"\r",
+											"  ]\r",
+											"}\r",
+											")"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"//=======================================================================\r",
+											"//Validar o contrato\r",
+											"const Ajv = require(\"ajv\")\r",
+											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
+											"\r",
+											"pm.test('V04- Validar o schema do contrato', function () {\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"//Capturar id\r",
+											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
+											"    pm.environment.unset(\"activitiesID\");\r",
+											"    pm.environment.set(\"activitiesID\", pm.response.json().id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "1b21faca-9027-44a3-a895-ae3524fd6514",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": {{$randomInt}},\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
 						}
 					],
 					"id": "cbe199ca-5d2a-4ba9-83ea-a2f5773a98b5"
