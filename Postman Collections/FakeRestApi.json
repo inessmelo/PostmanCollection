@@ -20,8 +20,8 @@
 									"script": {
 										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
 										"exec": [
-											"pm.globals.unset(\"schema\")\r",
-											"pm.globals.set(\"schema\", {\r",
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
 											"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
 											"  \"type\": \"object\",\r",
 											"  \"properties\": {\r",
@@ -78,7 +78,7 @@
 											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
 											"\r",
 											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
 											"});\r",
 											"\r",
 											"//Capturar id\r",
@@ -128,8 +128,8 @@
 									"script": {
 										"id": "506e8f08-11a5-4e1f-bc9d-d9152c74ba6c",
 										"exec": [
-											"pm.globals.unset(\"schema\")\r",
-											"pm.globals.set(\"schema\", {\r",
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
 											"  //\"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
 											"  \"type\": \"array\",\r",
 											"  \"items\": [\r",
@@ -190,7 +190,7 @@
 											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
 											"\r",
 											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
 											"});\r",
 											"\r",
 											"//Capturar id\r",
@@ -237,8 +237,8 @@
 									"script": {
 										"id": "5582f804-1c82-403d-8057-b05f9baa0b81",
 										"exec": [
-											"pm.globals.unset(\"schema\")\r",
-											"pm.globals.set(\"schema\", {\r",
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
 											"  \"type\": \"object\",\r",
 											"  \"properties\": {\r",
 											"    \"id\": {\r",
@@ -294,7 +294,7 @@
 											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
 											"\r",
 											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -325,8 +325,8 @@
 									"script": {
 										"id": "5582f804-1c82-403d-8057-b05f9baa0b81",
 										"exec": [
-											"pm.globals.unset(\"schema\")\r",
-											"pm.globals.set(\"schema\", {\r",
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
 											"  \"type\": \"object\",\r",
 											"  \"properties\": {\r",
 											"    \"type\": {\r",
@@ -382,7 +382,7 @@
 											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
 											"\r",
 											"pm.test('V04- Validar o schema do contrato', function () {\r",
-											"    pm.expect(ajv.validate(pm.globals.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
 											"});"
 										],
 										"type": "text/javascript",
