@@ -305,7 +305,7 @@
 							"response": []
 						},
 						{
-							"name": "[CT005]Cadastrar atividade com campo dueDate em branco Copy",
+							"name": "[CT005]Cadastrar atividade com campo title em branco",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -357,7 +357,199 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"\",\r\n  \"completed\": \"true\"\r\n}",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT006]Cadastrar atividade com campo id em branco",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "aa6c59d7-1423-4bd1-bab0-6fc5f96abcee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT007]Cadastrar atividade com data futura",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "2abd7030-92a4-4bbc-9bf0-19119397d396",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataFutura}}\",\r\n  \"completed\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT0088]Cadastrar atividade com data passada",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2af0e798-870a-44e8-87cd-e29b5dd6376c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "73db6bdf-a87f-483b-bd97-b2e43a8cabbb",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "9db9bc0a-4cf5-49bb-8454-8cee5c010cdf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{$randomInt}}\",\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataHistorica}}\",\r\n  \"completed\": \"true\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
