@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3c8b85b8-c791-4214-a458-338b0b59c66e",
 		"name": "Fake Rest API Web",
-		"description": "Swagger: [https://fakerestapi.azurewebsites.net/index.html](https://fakerestapi.azurewebsites.net/index.html)\n\nAPI para criação de Livors e Autores",
+		"description": "Swagger: [https://fakerestapi.azurewebsites.net/index.html](https://fakerestapi.azurewebsites.net/index.html)\n\nValidar contrato: [https://www.liquid-technologies.com/online-json-to-schema-converter](https://www.liquid-technologies.com/online-json-to-schema-converter)\n\nAPI para criação de livros e autores\n\nBiblioteca Chai: [https://www.chaijs.com/api/bdd/](https://www.chaijs.com/api/bdd/)\n\nBiblioteca ajv: [https://ajv.js.org/json-schema.html#draft-07](https://ajv.js.org/json-schema.html#draft-07)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -13,7 +13,7 @@
 					"name": "Criar atividade",
 					"item": [
 						{
-							"name": "Cadastrar Atividade",
+							"name": "[CT001]Cadastrar Atividade",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -26,7 +26,8 @@
 											"pm.environment.set(\"status\", \"active\");"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -35,7 +36,7 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -46,7 +47,7 @@
 										}
 									}
 								},
-								"url": "{{URL_Fake_Rest_API}}/Activities"
+								"url": "{{baseURL}}{{version}}/Activities"
 							},
 							"response": []
 						}
