@@ -13,7 +13,7 @@
 					"name": "Criar atividade",
 					"item": [
 						{
-							"name": "[CT001]Cadastrar Atividade",
+							"name": "[CT001]Cadastrar atividade com sucesso",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -83,9 +83,9 @@
 											"\r",
 											"//Capturar id\r",
 											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
 											"    pm.environment.unset(\"activitiesID\");\r",
 											"    pm.environment.set(\"activitiesID\", pm.response.json().id);\r",
-											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
 											"});"
 										],
 										"type": "text/javascript",
