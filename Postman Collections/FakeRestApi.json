@@ -37,7 +37,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 101,\r\n  \"title\": \"Teste API Autor\",\r\n  \"dueDate\": \"2025-06-07T18:29:02.926Z\",\r\n  \"completed\": true\r\n}",
+									"raw": "{\r\n  \"id\": {{$randomInt}},\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
