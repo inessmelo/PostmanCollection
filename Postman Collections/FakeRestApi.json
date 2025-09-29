@@ -10,7 +10,7 @@
 			"name": "Activities",
 			"item": [
 				{
-					"name": "Criar atividade",
+					"name": "✅Criar atividade",
 					"item": [
 						{
 							"name": "[CT001]Cadastrar atividade com sucesso",
@@ -856,7 +856,20 @@
 				},
 				{
 					"name": "Atualizar atividade",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "33b4a3bb-6f4d-4a87-8288-0168c75d2fe9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "0a92d32e-2f13-440b-ba05-88c750045f55"
 				},
 				{
