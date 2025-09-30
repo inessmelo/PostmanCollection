@@ -890,7 +890,7 @@
 					"name": "Atualizar atividade",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "[CT001]Atualizar todos os campos com sucesso",
 							"id": "33b4a3bb-6f4d-4a87-8288-0168c75d2fe9",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -900,7 +900,12 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": {{activitiesID}},\r\n \"title\": \"string\",\r\n  \"dueDate\": \"2025-09-30T00:34:39.97Z\",\r\n  \"completed\": true\r\n}"
+									"raw": "{\r\n    \"id\": {{activitiesID}},\r\n    \"title\": \"{{$randomAdjective}}\",\r\n    \"dueDate\": \"{{dataAtual}}\",\r\n    \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
 							},
