@@ -99,6 +99,9 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -897,24 +900,9 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": {{activitiesID}},\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": true\r\n}"
+									"raw": ""
 								},
-								"url": {
-									"raw": "{{baseURL}}{{version}}/Activities/?id={{activitiesID}}",
-									"host": [
-										"{{baseURL}}{{version}}"
-									],
-									"path": [
-										"Activities",
-										""
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "{{activitiesID}}"
-										}
-									]
-								}
+								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
 							},
 							"response": []
 						}
