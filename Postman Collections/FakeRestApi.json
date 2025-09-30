@@ -561,7 +561,36 @@
 							"response": []
 						}
 					],
-					"id": "cbe199ca-5d2a-4ba9-83ea-a2f5773a98b5"
+					"id": "cbe199ca-5d2a-4ba9-83ea-a2f5773a98b5",
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "23906546-c03e-4ef9-9bc6-834ef4459307",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b004acd3-32a0-431d-93c3-75493f26ced9",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				},
 				{
 					"name": "✅Buscar atividade",
@@ -870,7 +899,22 @@
 									"mode": "raw",
 									"raw": "{\r\n  \"id\": {{activitiesID}},\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": true\r\n}"
 								},
-								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
+								"url": {
+									"raw": "{{baseURL}}{{version}}/Activities/?id={{activitiesID}}",
+									"host": [
+										"{{baseURL}}{{version}}"
+									],
+									"path": [
+										"Activities",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{activitiesID}}"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -883,7 +927,36 @@
 					"id": "8c0d806f-c27b-41a2-9e19-cb7378021ea3"
 				}
 			],
-			"id": "a0eefc3a-dbd9-4f4e-a43c-9ada33aa44d6"
+			"id": "a0eefc3a-dbd9-4f4e-a43c-9ada33aa44d6",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "176a46d6-6dd4-4a3b-a574-4bac02850b54",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7535eb0-1e96-43f9-9144-56e7f2c96184",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Authors",
