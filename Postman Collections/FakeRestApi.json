@@ -85,7 +85,13 @@
 											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
 											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
 											"    pm.environment.unset(\"activitiesID\");\r",
+											"    pm.environment.unset(\"activitiesTitle\");\r",
+											"    pm.environment.unset(\"activitiesDueDate\");\r",
+											"    pm.environment.unset(\"activitiesCompleted\");\r",
 											"    pm.environment.set(\"activitiesID\", pm.response.json().id);\r",
+											"    pm.environment.set(\"activitiesTitle\", pm.response.json().title);\r",
+											"    pm.environment.set(\"activitiesDueDate\", pm.response.json().dueDate);\r",
+											"    pm.environment.set(\"activitiesCompleted\", pm.response.json().completed);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -1080,7 +1086,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": {{activitiesID}},\r\n    \"title\": \"{{$randomAdjective}}\",\r\n    \"dueDate\": \"\",\r\n    \"completed\": true\r\n}",
+									"raw": "{\r\n    \"id\": {{activitiesID}},\r\n    \"title\": \"{{$randomAdjective}}\",\r\n    \"dueDate\": \"{{activitiesDueDate}}\",\r\n    \"completed\": {{activitiesCompleted}}\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
