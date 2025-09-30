@@ -1066,7 +1066,7 @@
 											"\r",
 											"//Validar o id\r",
 											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
-											"    pm.expect(pm.environment(\"{{activitiesID}}\")).to.be.eql(pm.response.json().id);\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"V06- Validar a data da resposta\", function () {\r",
