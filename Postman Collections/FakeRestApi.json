@@ -891,6 +891,85 @@
 					"item": [
 						{
 							"name": "[CT001]Atualizar todos os campos com sucesso",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3b54bfc0-3a8b-4eb2-a61b-abb14b3d9e37",
+										"exec": [
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"dueDate\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"completed\": {\r",
+											"      \"type\": \"boolean\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"dueDate\",\r",
+											"    \"completed\"\r",
+											"  ]\r",
+											"}\r",
+											")"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "02229118-29a8-49e7-89cd-af06243c9f4a",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"//=======================================================================\r",
+											"//Validar o contrato\r",
+											"const Ajv = require(\"ajv\")\r",
+											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
+											"\r",
+											"pm.test('V04- Validar o schema do contrato', function () {\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"//Capturar id\r",
+											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
+											"    pm.environment.unset(\"activitiesID\");\r",
+											"    pm.environment.set(\"activitiesID\", pm.response.json().id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"id": "33b4a3bb-6f4d-4a87-8288-0168c75d2fe9",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -901,6 +980,107 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"id\": {{activitiesID}},\r\n    \"title\": \"{{$randomAdjective}}\",\r\n    \"dueDate\": \"{{dataAtual}}\",\r\n    \"completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
+							},
+							"response": []
+						},
+						{
+							"name": "[CT002]Atualizar o campo Title",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3b54bfc0-3a8b-4eb2-a61b-abb14b3d9e37",
+										"exec": [
+											"pm.environment.unset(\"schema\")\r",
+											"pm.environment.set(\"schema\", {\r",
+											"  \"type\": \"object\",\r",
+											"  \"properties\": {\r",
+											"    \"id\": {\r",
+											"      \"type\": \"integer\"\r",
+											"    },\r",
+											"    \"title\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"dueDate\": {\r",
+											"      \"type\": \"string\"\r",
+											"    },\r",
+											"    \"completed\": {\r",
+											"      \"type\": \"boolean\"\r",
+											"    }\r",
+											"  },\r",
+											"  \"required\": [\r",
+											"    \"id\",\r",
+											"    \"title\",\r",
+											"    \"dueDate\",\r",
+											"    \"completed\"\r",
+											"  ]\r",
+											"}\r",
+											")"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "02229118-29a8-49e7-89cd-af06243c9f4a",
+										"exec": [
+											"//Validar o retorno do status code\r",
+											"pm.test(\"V01- Validar o retorno do status code 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    pm.response.to.have.status(\"OK\")\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar o tempo de resposta\r",
+											"pm.test(\"V02- Validar o tempo de resposta de 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"//=======================================================================\r",
+											"//Validar se o retorno é um array de objetos\r",
+											"pm.test(\"V03- Validiar se retorno é um array de objetos\", function () {\r",
+											"    pm.expect(pm.response.json()).to.be.an('object');\r",
+											"})\r",
+											"//=======================================================================\r",
+											"//Validar o contrato\r",
+											"const Ajv = require(\"ajv\")\r",
+											"const ajv = new Ajv({allErrors: true, verbose: true});\r",
+											"\r",
+											"pm.test('V04- Validar o schema do contrato', function () {\r",
+											"    pm.expect(ajv.validate(pm.environment.get('schema'), pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"//Capturar id\r",
+											"pm.test(\"V05- Validar o ID da resposta\", function () {\r",
+											"    pm.expect(pm.response.json().id).to.be.eql(pm.response.json().id);\r",
+											"    pm.environment.unset(\"activitiesID\");\r",
+											"    pm.environment.set(\"activitiesID\", pm.response.json().id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "e593bf0d-6e6f-4303-9ed0-a46c745acbac",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{activitiesID}},\r\n    \"title\": \"{{$randomAdjective}}\",\r\n    \"dueDate\": \"\",\r\n    \"completed\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
