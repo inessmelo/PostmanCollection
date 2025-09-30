@@ -864,8 +864,13 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": {{activitiesID}},\r\n  \"title\": \"{{$randomAdjective}}\",\r\n  \"dueDate\": \"{{dataAtual}}\",\r\n  \"completed\": true\r\n}"
+								},
+								"url": "{{baseURL}}{{version}}/Activities/{{activitiesID}}"
 							},
 							"response": []
 						}
